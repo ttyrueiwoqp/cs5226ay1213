@@ -7,4 +7,7 @@ http://docs.oracle.com/cd/B19306_01/server.102/b14211/autostat.htm#i26958
 
 
 Other info:
+
 Also check the "Shared Pool Statistics", if the "End" value is in the high 95%-100% range ,this is a indication that the shared pool needs to be increased (especially if the "Begin" value is much smaller) 
+
+http://www.pafumi.net/AWR%20Reports.html
