@@ -1,6 +1,4 @@
 #labels Featured
-How to the time to take statics:
+How to change the time to take statics:
 http://orabackus.wordpress.com/2008/01/25/modifying-awr-automatic-snapshot-settings/
-
-
 
