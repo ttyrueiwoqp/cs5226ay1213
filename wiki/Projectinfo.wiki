@@ -2,3 +2,4 @@
 How to change the time to take statics:
 http://orabackus.wordpress.com/2008/01/25/modifying-awr-automatic-snapshot-settings/
 
+http://docs.oracle.com/cd/B19306_01/server.102/b14211/autostat.htm#i26958
