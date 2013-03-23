@@ -16,3 +16,9 @@ http://www.pafumi.net/AWR%20Reports.html
 Login as sysdba:
 
 http://www.idevelopment.info/data/Programming/java/jdbc/ConnectionOptions.java
+
+How to change system password:
+
+1 use ssh open sqlplus: sqlplus / as sysdba
+2 type:  passw system
+3 follow the step to modify the password
