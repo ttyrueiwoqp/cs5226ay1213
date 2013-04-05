@@ -1,4 +1,4 @@
-package com.nus.cs;
+package com.nus.cs.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
