@@ -1,4 +1,4 @@
-package com.nus.cs;
+package com.nus.cs.controller;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 
@@ -17,6 +18,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.nus.cs.domain.SomeTO;
+import com.nus.cs.service.DBService;
+
 /**
  * Handles requests for the application home page.
  */
@@ -25,6 +29,8 @@ public class DBController {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(DBController.class);
+	
+	private DBService dbService = new DBService();
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -81,6 +87,10 @@ public class DBController {
 
 		model.addAttribute("status", sts);
 		model.addAttribute("welcomeMessage", "Welcome To DBDB");
+		
+		List<SomeTO> someResult = dbService.getSomeResult("4", 5);
+		
+		model.addAttribute("someResult", someResult);
 
 		return "db";
 	}

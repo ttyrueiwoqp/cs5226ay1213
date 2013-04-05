@@ -41,6 +41,15 @@
 
 		<P>The status on the server is ${status}.</P>
 		<p>${welcomeMessage}</p>
+		<table>
+			<c:forEach items="${someResult}" var="abc">
+				<tr>
+					<td><c:out value="${abc.x}"/></td>
+					<td>table table </td>
+					<td><c:out value="${abc.y}"/></td>
+				</tr>		
+			</c:forEach>
+		</table>
 	</div>
 </body>
 </html>
