@@ -34,20 +34,4 @@ public class DBDao extends JdbcDaoSupport {
 		
 		return conn;		
 	}
-	
-	public List<SomeTO> getSomeResult(String a, int b) {
-		
-		RowMapper<SomeTO> mapper = new SomeRowMapper();
-		Object[] param = new Object[]{a, b};
-		
-		// query (m = a and n = b)
-		String sql = " SELECT DBID, DBID FROM V$DATABASE ";
-		
-		List<SomeTO> ret = super.getJdbcTemplate().query(sql, param, mapper);
-		
-		return ret;
-		
-		
-	}
-	
 }

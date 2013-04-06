@@ -4,7 +4,7 @@ public class DBTO {
 	
 	private String startTime;
 	private String endTime;
-	private String avgValue;
+	private double avgValue;
 	private String otherData;
 	
 	public String getStartTime() {
@@ -19,10 +19,10 @@ public class DBTO {
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
-	public String getAvgValue() {
+	public double getAvgValue() {
 		return avgValue;
 	}
-	public void setAvgValue(String avgValue) {
+	public void setAvgValue(double avgValue) {
 		this.avgValue = avgValue;
 	}
 	public String getOtherData() {

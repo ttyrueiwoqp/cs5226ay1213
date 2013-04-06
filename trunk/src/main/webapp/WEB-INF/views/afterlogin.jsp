@@ -43,12 +43,9 @@
 
     <div class="container">
 		<h1>
-			Hello world!  
+			Welcome to DBDB!  
 		</h1>
 		
-		<P>  The time on the server is ${serverTime}. </P>
-		<p> ${welcomeMessage} </p>
-		<p><a href="db">DB</a></p>
 
 	</div>
 </body>

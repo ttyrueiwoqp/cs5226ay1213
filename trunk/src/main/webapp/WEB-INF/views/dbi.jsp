@@ -43,7 +43,18 @@
 	</div>
 	<div class="container">
 		<h1>Hello DB!</h1>
-		<p>${someResult}</p>
+		<table>
+			<% int i = 1; %>
+			<c:forEach items="${someResult}" var="abc">
+				<tr>
+					<td> <%=i++ %> </td>
+					<td><c:out value="${abc.avgValue}"/></td>
+					<td><c:out value="${abc.startTime}"/><c:out value="${abc.endTime}"/></td>
+					
+					<td><c:out value="${abc.avgValue}"/></td>
+				</tr>		
+			</c:forEach>
+		</table>
 		
 	</div>
 </body>

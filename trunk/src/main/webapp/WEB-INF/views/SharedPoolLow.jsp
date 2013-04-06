@@ -47,42 +47,32 @@
 		<tbody>
 			<tr>
 				<td valign="top" style="padding: 0px; width: 100%;">
-				<div class="box_title"><span class="boxtitle">Overview - Shared Pool</span></div>
-				
+				<div class="box_title"><span class="boxtitle">Low Level Breakdown - Shared Pool</span></div>
 				<table border="0" width="100%">
-					
-					<tr width="100%" align="center">
-						<td>Start Time</td>
-						<td>
-							<c:out value="${dbTO.startTime}"/>
-							
-						</td>
-						
-					</tr>
-					
-					<tr width="100%" align="center">
-						<td>End Time</td>
-						<td>
-							<c:out value="${dbTO.endTime}"/>
-							<%-- input type="hidden" name="endTime" value="${dbTO.endTime}" />--%>
-						</td>
-					</tr>
-					
-					<tr width="100%" align="center">
-						<td>Average Value</td>
-						<td><c:out value="${dbTO.avgValue}"/></td>
-					</tr>
-					
-					<tr width="100%" align="center">
-						<td>Current State</td>
-						<td><c:out value="${state}"/></td>
-					</tr>
-					
 					<tr>
-						<td align="left"><a href="/cs/sp2?startTime=${dbTO.startTime}&endTime=${dbTO.endTime}">Second</a></td>
+						<td width="100%">
+							<table width="100%">
+								<tr>
+									<td>Metric Monitored:</td>
+									<td> Here we need to put the metric name</td>
+								</tr>
+								<tr>
+									<td>Start Date:</td>
+									<td> Here we need to put the start time of the interval</td>
+								</tr>
+								<tr>
+									<td>End Date:</td>
+									<td>Here we need to put the start time of the interval</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td width="100%" align="center">
+						<p>This area is to draw the table for breakdown intervals.</p>
+						</td>
 					</tr>
 				</table>
-				
 				</td>
 			</tr>
 		</tbody>

@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
@@ -42,9 +43,14 @@ public class DBIController {
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome db! The client locale is {}.", locale);
 		
-		DBTO someResult = new DBTO();
+		List<DBTO> someResult = null;
 		try {
-			someResult = dbService.getData(" SELECT metric_id, metric_name, avg(average) value FROM  dba_hist_sysmetric_summary WHERE metric_id =2114 and end_time > to_date('06/04/2013 10:00:00', 'dd/mm/yyyy HH24:MI:SS') and end_time < to_date('06/04/2013 11:00:00', 'dd/mm/yyyy HH24:MI:SS') GROUP BY metric_id, metric_name ");
+			try {
+				someResult = dbService.getDataList("2114","06/04/2013 14:00", "06/04/2013 16:00", "30");
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -60,7 +66,7 @@ public class DBIController {
 		}
 		
 		
-		model.addAttribute("someResult", someResult.getAvgValue());
+		model.addAttribute("someResult", someResult);
 
 		return "dbi";
 	}
