@@ -88,29 +88,6 @@ public class DBController {
 				}
 			}
 		}
-
-		model.addAttribute("status", sts);
-		model.addAttribute("welcomeMessage", "Welcome To DBDB");
-		
-		DBTO someResult = new DBTO();
-		try {
-			someResult = dbService.getData(" SELECT metric_id, metric_name, avg(average) value FROM  dba_hist_sysmetric_summary WHERE metric_id ='2114' and end_time > to_date('06/04/2013 10:00:00', 'dd/mm/yyyy HH24:MI:SS') and end_time < to_date('06/04/2013 11:00:00', 'dd/mm/yyyy HH24:MI:SS') GROUP BY metric_id, metric_name ");
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		model.addAttribute("someResult", someResult.getAvgValue());
-
 		return "db";
 	}
 	
