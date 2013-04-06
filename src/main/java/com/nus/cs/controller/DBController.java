@@ -67,7 +67,7 @@ public class DBController {
 			String sqlGetReport = "SELECT output FROM TABLE (dbms_workload_"
 					+ "repository.awr_report_text (" + dbid + ",1,"
 					+ (castSnapId - 1) + "," + castSnapId + "))";
-			sts = getInfo(sqlGetReport, statement);
+			sts = getInfo(sqlGetID, statement);
 			statement.close();
 			
 
