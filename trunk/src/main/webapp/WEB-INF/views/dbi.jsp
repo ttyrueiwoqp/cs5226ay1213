@@ -43,22 +43,8 @@
 	</div>
 	<div class="container">
 		<h1>Hello DB!</h1>
+		<p>${someResult}</p>
 		
-		<P>The status on the server is ${status}.</P>
-		<p>${welcomeMessage}</p>
-		<table>
-			<c:forEach items="${someResult}" var="abc">
-				<tr>
-					<td><c:out value="${abc.x}"/></td>
-					<td>table table </td>
-					<td><c:out value="${abc.y}"/></td>
-				</tr>		
-			</c:forEach>
-		</table>
-		<form method="post" action="/cs/db">
-			<textarea rows="10" cols="30" name="status" ></textarea>
-			<input type="submit" value="Add Status"/>
-		</form>
 	</div>
 </body>
 </html>
