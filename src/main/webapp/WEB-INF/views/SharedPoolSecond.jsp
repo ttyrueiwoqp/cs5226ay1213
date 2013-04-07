@@ -70,8 +70,16 @@
 					<tr>
 						<td width="100%" align="center">
 						<p>This area is to draw the table for breakdown intervals.</p>
+						
 						</td>
 					</tr>
+					<c:forEach items="${dbTOList}" var="dbTO">
+				<tr>
+					<td><c:out value="${dbTO.startTime}"/></td>
+					<td><c:out value="${dbTO.endTime}"/></td>
+					<td><c:out value="${dbTO.avgValue}"/></td>
+				</tr>		
+			</c:forEach>
 				</table>
 				</td>
 			</tr>

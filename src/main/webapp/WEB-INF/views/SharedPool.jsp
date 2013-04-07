@@ -42,38 +42,38 @@
 		</div>
 	</div>
 	<!--  display area -->
-	<div align="left">
-	<table width="800" cellspacing="0" cellpadding="0" border="2">
+	<div align="center" class="container"><h1>Shared Pool</h1></div>
+	
+	<div class="container" align="center">
+	<table width="800" cellspacing="0" cellpadding="0" border="2" align="center">
 		<tbody>
 			<tr>
-				<td valign="top" style="padding: 0px; width: 100%;">
-				<div class="box_title"><span class="boxtitle">Overview - Shared Pool</span></div>
+				<td valign="middle" style="padding: 50px; width: 100%;">
+				<div class="box_title"><span class="boxtitle"><h4><i>Overview</i></h4></span></div>
 				
 				<table border="0" width="100%">
 					
-					<tr width="100%" align="center">
+					<tr align="center">
 						<td>Start Time</td>
 						<td>
 							<c:out value="${dbTO.startTime}"/>
-							
 						</td>
 						
 					</tr>
 					
-					<tr width="100%" align="center">
+					<tr align="center">
 						<td>End Time</td>
 						<td>
 							<c:out value="${dbTO.endTime}"/>
-							<%-- input type="hidden" name="endTime" value="${dbTO.endTime}" />--%>
 						</td>
 					</tr>
 					
-					<tr width="100%" align="center">
+					<tr align="center">
 						<td>Average Value</td>
 						<td><c:out value="${dbTO.avgValue}"/></td>
 					</tr>
 					
-					<tr width="100%" align="center">
+					<tr align="center">
 						<td>Current State</td>
 						<td><c:out value="${state}"/></td>
 					</tr>
@@ -88,5 +88,31 @@
 		</tbody>
 	</table>
 	</div>
+	
+	<div class="container">
+		<form method="get" action="/cs/sp2">
+			<table width="800" cellspacing="0" cellpadding="0" border="0" align="center">
+				<tr>
+					<td colspan="2"><h4>Detailed Report</h4></td>
+				</tr>
+				<tr>
+					<td><h4>Start Time (DD/MM/YYYY HH24:MI:SS)</h4></td>
+					<td><input type="text" name="startTime" value="${dbTO.startTime}"/></td>
+				</tr>
+				<tr>
+					<td><h4>End Time (DD/MM/YYYY HH24:MI:SS)</h4></td>
+					<td><input type="text" name="endTime" value="${dbTO.endTime}"/></td>
+				</tr>
+				<tr>
+					<td><h4>Interval (Min)</h4></td>
+					<td><input type="text" name="x" value="60"/></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="right"><input type="submit" name="Submit" /></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	
 </body>
 </html>
