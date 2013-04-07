@@ -31,9 +31,9 @@ public class SignInController {
                     "Last Name:" + password);
         
         if(id.equals("dba")&&password.equals("dba")){
-        	return "/afterlogin";
+        	return "afterlogin";
         }else{
-        	return "/home";
+        	return "home";
         }
     }
 	

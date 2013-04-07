@@ -6,6 +6,8 @@ public class DBTO {
 	private String endTime;
 	private double avgValue;
 	private String otherData;
+	private int x;
+	private int y;
 	
 	public String getStartTime() {
 		return startTime;
@@ -30,6 +32,18 @@ public class DBTO {
 	}
 	public void setOtherData(String otherData) {
 		this.otherData = otherData;
+	}
+	public int getX() {
+		return x;
+	}
+	public void setX(int x) {
+		this.x = x;
+	}
+	public int getY() {
+		return y;
+	}
+	public void setY(int y) {
+		this.y = y;
 	}
 	
 }

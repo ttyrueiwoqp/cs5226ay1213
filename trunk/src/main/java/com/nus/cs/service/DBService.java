@@ -17,7 +17,7 @@ import com.nus.cs.util.DateUtil;
 public class DBService {
 
 	private DBDao dbDao = new DBDao();
-	
+
 	static public Map<String, Integer> threshold = new HashMap<String, Integer>();
 
 	public List<DBTO> getDataList(String table, String startTime,
@@ -33,15 +33,20 @@ public class DBService {
 
 		Date tempStartDate = startDate;
 		Date tempEndDate = null;
+		
+		Connection conn = dbDao.createConnection();
+		
 		while (tempStartDate.before(endDate)) {
 			tempEndDate = DateUtil.addMin(tempStartDate, timeInteval);
-			DBTO tmp = getData(table, DateUtil.getDateAsString(tempStartDate),
+			DBTO tmp = dbDao.getData(conn, table, DateUtil.getDateAsString(tempStartDate),
 					DateUtil.getDateAsString(tempEndDate));
 			if (tmp != null) {
 				results.add(tmp);
 			}
 			tempStartDate = tempEndDate;
 		}
+		
+		conn.close();
 
 		return results;
 
@@ -52,7 +57,7 @@ public class DBService {
 			IllegalAccessException, ClassNotFoundException {
 
 		Connection conn = dbDao.createConnection();
-		
+
 		DBTO ret = dbDao.getData(conn, table, startTime, endTime);
 
 		conn.close();
@@ -61,24 +66,24 @@ public class DBService {
 	}
 
 	public void initThreshold() throws SQLException, InstantiationException,
-	IllegalAccessException, ClassNotFoundException {
+			IllegalAccessException, ClassNotFoundException {
 
 		Connection conn = dbDao.createConnection();
-		
+
 		dbDao.initThreshold(conn);
-		
+
 		conn.close();
-		
+
 		return;
 	}
-	
+
 	public void getThreshold() throws SQLException, InstantiationException,
 			IllegalAccessException, ClassNotFoundException {
 
 		Connection conn = dbDao.createConnection();
 
 		dbDao.getThreshold(conn, threshold);
-		
+
 		conn.close();
 
 		return;
