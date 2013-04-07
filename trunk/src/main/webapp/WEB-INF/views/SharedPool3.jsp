@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="false"%>
 <html>
 <head>
@@ -59,12 +59,12 @@
 							</h3>
 						</div>
 						<table border="0" width="100%">
-							<tr align="center">
-								<th>S/N</th>
-								<th>Start Time</th>
-								<th>End Time</th>
-								<th>Average Value</th>
-								<th>Status</th>
+							<tr align="center" bgcolor="#1B1B1B">
+								<th><font color="#FAFAFA">S/N</font></th>
+								<th><font color="#FAFAFA">Start Time</font></th>
+								<th><font color="#FAFAFA">End Time</font></th>
+								<th><font color="#FAFAFA">Average Value</font></th>
+								<th><font color="#FAFAFA">Status</font></th>
 							</tr>
 							<%
 								int i = 0;
@@ -73,13 +73,46 @@
 								<%
 									i++;
 								%>
-								<tr align="center">
-									<td><%=i%></td>
-									<td><c:out value="${dbTO.startTime}" /></td>
-									<td><c:out value="${dbTO.endTime}" /></td>
-									<td><c:out value="${dbTO.avgValue}" /></td>
-									<td><c:out value="${dbTO.otherData}" /></td>
+								<%
+									if ((i % 2) == 0) {
+								%>
+								<tr align="center" bgcolor="#FFFFFF">
+									<%
+										} else {
+									%>
+								
+								<tr align="center" bgcolor="#FAFAFA">
+									<%
+										}
+									%><td><h5><%=i%></h5></td>
+									<td><h5>
+											<c:out value="${dbTO.startTime}" />
+										</h5></td>
+									<td><h5>
+											<c:out value="${dbTO.endTime}" />
+										</h5></td>
+									<td><h5>
+											<fmt:formatNumber type="percent" maxFractionDigits="2"
+												value="${dbTO.avgValue/100}" />
+										</h5></td>
+									<c:choose>
+										<c:when test="${dbTO.status == 'HEALTHY'}">
+											<td style="color: #00FF00">
+										</c:when>
+										<c:when test="${dbTO.status == 'MODERATE'}">
+											<td style="color: #FFBF00">
+										</c:when>
+										<c:otherwise>
+											<td style="color: #DF0101">
+										</c:otherwise>
+									</c:choose>
+									<h5>
+										<c:out value="${dbTO.status}" />
+									</h5>
+									</td>
 								</tr>
+
+
 							</c:forEach>
 						</table>
 					</td>

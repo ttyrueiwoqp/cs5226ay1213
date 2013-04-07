@@ -12,6 +12,7 @@ import java.util.Map;
 
 import com.nus.cs.dao.DBDao;
 import com.nus.cs.domain.DBTO;
+import com.nus.cs.util.Constants;
 import com.nus.cs.util.DateUtil;
 
 public class DBService {
@@ -41,7 +42,16 @@ public class DBService {
 			DBTO tmp = dbDao.getData(conn, table, DateUtil.getDateAsString(tempStartDate),
 					DateUtil.getDateAsString(tempEndDate));
 			if (tmp != null) {
+				
 				tmp.setInterval(interval);
+				
+				if (tmp.getAvgValue() >= 80)
+					tmp.setStatus(Constants.HEALTHY);
+				else if (tmp.getAvgValue() >= 60)
+					tmp.setStatus(Constants.MODERATE);
+				else
+					tmp.setStatus(Constants.ATTENTION);
+				
 				results.add(tmp);
 			}
 			tempStartDate = tempEndDate;
@@ -60,6 +70,13 @@ public class DBService {
 		Connection conn = dbDao.createConnection();
 
 		DBTO ret = dbDao.getData(conn, table, startTime, endTime);
+		
+		if (ret.getAvgValue() >= 80)
+			ret.setStatus(Constants.HEALTHY);
+		else if (ret.getAvgValue() >= 60)
+			ret.setStatus(Constants.MODERATE);
+		else
+			ret.setStatus(Constants.ATTENTION);
 
 		conn.close();
 
