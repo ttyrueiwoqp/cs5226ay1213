@@ -5,23 +5,15 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
-import com.nus.cs.dao.support.SomeRowMapper;
 import com.nus.cs.domain.DBTO;
-import com.nus.cs.domain.SomeTO;
 
 public class DBDao extends JdbcDaoSupport {
 	
-	static public Map<String, Integer> threshold = new HashMap<String, Integer>();
-
 	public Connection createConnection() throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		
 		String driverClass = "oracle.jdbc.driver.OracleDriver";
@@ -68,7 +60,7 @@ public class DBDao extends JdbcDaoSupport {
 		return dbTO;
 	}
 
-	public void setThreshold(Connection conn) throws SQLException {
+	public void initThreshold(Connection conn) throws SQLException {
 		
 		String sql = " DROP TABLE THRESHOLD_CONFIG ";
 		PreparedStatement ps = conn.prepareStatement(sql);
@@ -102,7 +94,7 @@ public class DBDao extends JdbcDaoSupport {
 		
 	}
 
-	public void getThreshold(Connection conn) throws SQLException {
+	public void getThreshold(Connection conn, Map<String, Integer> threshold) throws SQLException {
 		
 		String sql = " SELECT param_name, param_warning, param_critical from threshold_config ";
 

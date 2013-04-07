@@ -30,7 +30,6 @@ public class SignInController {
         System.out.println("First Name:" + id + 
                     "Last Name:" + password);
         
-        //model.addAttribute("status", status);
         if(id.equals("dba")&&password.equals("dba")){
         	return "/afterlogin";
         }else{

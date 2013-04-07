@@ -28,7 +28,7 @@
           <a class="brand" href="/cs">CS5226</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="">Home</a></li>
+              <li class="active"><a href="afterlogin">Home</a></li>
               <li><a href="dbi">Overall DataBase</a></li>
               <li><a href="sp">Shared Pool</a></li>
               <li><a href="bc">Buffer Cache</a></li>
@@ -40,13 +40,8 @@
         </div>
       </div>
     </div>
-
-    <div class="container">
-		<h1>
-			Welcome to DBDB!  
-		</h1>
-		
-
+    <div class="container" align="left">
+		<h1>Welcome to DB Dashboard!</h1>
 	</div>
 </body>
 </html>
