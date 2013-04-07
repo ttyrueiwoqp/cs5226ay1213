@@ -2,28 +2,23 @@ package com.nus.cs.service;
 
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.nus.cs.dao.DBDao;
 import com.nus.cs.domain.DBTO;
-import com.nus.cs.domain.SomeTO;
-import com.nus.cs.domain.ThredTO;
 import com.nus.cs.util.DateUtil;
 
 public class DBService {
 
 	private DBDao dbDao = new DBDao();
+	
+	static public Map<String, Integer> threshold = new HashMap<String, Integer>();
 
 	public List<DBTO> getDataList(String table, String startTime,
 			String endTime, String interval) throws ParseException,
@@ -39,9 +34,9 @@ public class DBService {
 		Date tempStartDate = startDate;
 		Date tempEndDate = null;
 		while (tempStartDate.before(endDate)) {
-			tempEndDate = DateUtil.addMinuteToDate(tempStartDate, timeInteval);
-			DBTO tmp = getData(table, DateUtil.getDateString(tempStartDate),
-					DateUtil.getDateString(tempEndDate));
+			tempEndDate = DateUtil.addMin(tempStartDate, timeInteval);
+			DBTO tmp = getData(table, DateUtil.getDateAsString(tempStartDate),
+					DateUtil.getDateAsString(tempEndDate));
 			if (tmp != null) {
 				results.add(tmp);
 			}
@@ -65,12 +60,12 @@ public class DBService {
 		return ret;
 	}
 
-	public void setThreshold() throws SQLException, InstantiationException,
+	public void initThreshold() throws SQLException, InstantiationException,
 	IllegalAccessException, ClassNotFoundException {
 
 		Connection conn = dbDao.createConnection();
 		
-		dbDao.setThreshold(conn);
+		dbDao.initThreshold(conn);
 		
 		conn.close();
 		
@@ -82,7 +77,7 @@ public class DBService {
 
 		Connection conn = dbDao.createConnection();
 
-		dbDao.getThreshold(conn);
+		dbDao.getThreshold(conn, threshold);
 		
 		conn.close();
 
