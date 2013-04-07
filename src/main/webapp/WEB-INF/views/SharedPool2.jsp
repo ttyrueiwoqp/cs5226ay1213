@@ -76,7 +76,7 @@
 										i++;
 									%>
 									<tr align="center">
-										<td><input type="radio" name="startend"
+										<td><input type="radio" name="startend" checked="checked"
 											value="${dbTO.startTime},${dbTO.endTime}"></td>
 										<td><%=i%></td>
 										<td><c:out value="${dbTO.startTime}" /></td>

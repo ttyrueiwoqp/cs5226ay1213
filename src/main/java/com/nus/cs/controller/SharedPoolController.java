@@ -81,7 +81,7 @@ public class SharedPoolController {
 
 		model.addAttribute("dbTOList", dbTOList);
 
-		return "SharedPoolSecond";
+		return "SharedPool2";
 	}
 
 	@RequestMapping(value = "/sp3", method = RequestMethod.GET)
@@ -110,7 +110,7 @@ public class SharedPoolController {
 
 		model.addAttribute("dbTOList", dbTOList);
 
-		return "SharedPoolLow";
+		return "SharedPool3";
 	}
 
 }
