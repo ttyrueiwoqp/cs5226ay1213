@@ -1,21 +1,13 @@
 package com.nus.cs.controller;
 
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
-import java.util.Properties;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.nus.cs.domain.DBTO;
-import com.nus.cs.domain.SomeTO;
 import com.nus.cs.service.DBService;
 import com.nus.cs.util.DateUtil;
 
@@ -50,8 +41,8 @@ public class MemSortController {
 		try {
 			Calendar cal = Calendar.getInstance();
 			Date now = new Date(cal.getTime().getTime());
-			Date before = DateUtil.addDayToDate(now, -1);
-			dbTO = dbService.getData("2001",DateUtil.getDateString(before), DateUtil.getDateString(now));
+			Date before = DateUtil.addDay(now, -1);
+			dbTO = dbService.getData("2001",DateUtil.getDateAsString(before), DateUtil.getDateAsString(now));
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -82,7 +73,7 @@ public class MemSortController {
 		try {
 			Calendar cal = Calendar.getInstance();
 			Date now = new Date(cal.getTime().getTime());
-			Date before = DateUtil.addDayToDate(now, -1);
+			Date before = DateUtil.addDay(now, -1);
 			results = dbService.getDataList("2001",startTime, endTime, "60");
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
@@ -118,7 +109,7 @@ public class MemSortController {
 		try {
 			Calendar cal = Calendar.getInstance();
 			Date now = new Date(cal.getTime().getTime());
-			Date before = DateUtil.addDayToDate(now, -1);
+			Date before = DateUtil.addDay(now, -1);
 			results = dbService.getDataList("2001",startTime, endTime, "15");
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
