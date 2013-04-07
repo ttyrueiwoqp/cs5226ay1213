@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.nus.cs.domain.DBTO;
 import com.nus.cs.service.DBService;
+import com.nus.cs.util.Constants;
 import com.nus.cs.util.DateUtil;
 
 /**
@@ -41,7 +42,7 @@ public class SharedPoolController {
 
 		DBTO dbTO = null;
 		try {
-			dbTO = dbService.getData("2114", DateUtil.getDateAsString(before),
+			dbTO = dbService.getData(Constants.SHARED_POOL, DateUtil.getDateAsString(before),
 					DateUtil.getDateAsString(now));
 		} catch (InstantiationException e) {
 			e.printStackTrace();
@@ -66,7 +67,7 @@ public class SharedPoolController {
 
 		List<DBTO> dbTOList = null;
 		try {
-			dbTOList = dbService.getDataList("2114", startTime, endTime, x);
+			dbTOList = dbService.getDataList(Constants.SHARED_POOL, startTime, endTime, x);
 		} catch (InstantiationException e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
@@ -95,7 +96,7 @@ public class SharedPoolController {
 
 		List<DBTO> dbTOList = null;
 		try {
-			dbTOList = dbService.getDataList("2114", startTime, endTime, y);
+			dbTOList = dbService.getDataList(Constants.SHARED_POOL, startTime, endTime, y);
 		} catch (InstantiationException e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
