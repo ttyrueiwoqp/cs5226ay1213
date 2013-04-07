@@ -41,6 +41,7 @@ public class DBService {
 			DBTO tmp = dbDao.getData(conn, table, DateUtil.getDateAsString(tempStartDate),
 					DateUtil.getDateAsString(tempEndDate));
 			if (tmp != null) {
+				tmp.setInterval(interval);
 				results.add(tmp);
 			}
 			tempStartDate = tempEndDate;

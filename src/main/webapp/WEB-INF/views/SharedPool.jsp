@@ -4,8 +4,7 @@
 <html>
 <head>
 <title>Shared Pool</title>
-<link
-	href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css"
+<link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css"
 	rel="stylesheet">
 <link
 	href="http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css"
@@ -28,13 +27,13 @@
 				<a class="brand" href="/cs">cs5226</a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-						<li class="active"><a href="afterlogin">Home</a></li>
+						<li><a href="afterlogin">Home</a></li>
 						<li><a href="dbi">Overall DataBase</a></li>
-			              <li><a href="sp">Shared Pool</a></li>
-			              <li><a href="bc">Buffer Cache</a></li>
-			              <li><a href="rl">Redo Log Buffer/Files</a></li>
-			              <li><a href="ma">Memory Area</a></li>
-			              <li><a href="db">Debug mode</a></li>
+						<li class="active"><a href="sp">Shared Pool</a></li>
+						<li><a href="bc">Buffer Cache</a></li>
+						<li><a href="rl">Redo Log Buffer/Files</a></li>
+						<li><a href="ma">Memory Area</a></li>
+						<li><a href="db">Debug mode</a></li>
 					</ul>
 				</div>
 				<!--/.nav-collapse -->
@@ -42,77 +41,84 @@
 		</div>
 	</div>
 	<!--  display area -->
-	<div align="center" class="container"><h1>Shared Pool</h1></div>
-	
 	<div class="container" align="center">
-	<table width="800" cellspacing="0" cellpadding="0" border="2" align="center">
-		<tbody>
-			<tr>
-				<td valign="middle" style="padding: 50px; width: 100%;">
-				<div class="box_title"><span class="boxtitle"><h4><i>Overview</i></h4></span></div>
-				
-				<table border="0" width="100%">
-					
-					<tr align="center">
-						<td>Start Time</td>
-						<td>
-							<c:out value="${dbTO.startTime}"/>
-						</td>
-						
-					</tr>
-					
-					<tr align="center">
-						<td>End Time</td>
-						<td>
-							<c:out value="${dbTO.endTime}"/>
-						</td>
-					</tr>
-					
-					<tr align="center">
-						<td>Average Value</td>
-						<td><c:out value="${dbTO.avgValue}"/></td>
-					</tr>
-					
-					<tr align="center">
-						<td>Current State</td>
-						<td><c:out value="${state}"/></td>
-					</tr>
-					
-					<tr>
-						<td align="left"><a href="/cs/sp2?startTime=${dbTO.startTime}&endTime=${dbTO.endTime}">Second</a></td>
-					</tr>
-				</table>
-				
-				</td>
-			</tr>
-		</tbody>
-	</table>
+		<table width="800" cellspacing="0" cellpadding="0" border="0"
+			align="center">
+			<tbody>
+				<tr>
+					<td align="center" valign="middle"
+						style="padding: 30px; width: 100%;">
+						<h1>Shared Pool</h1>
+					</td>
+				<tr>
+					<td valign="middle" style="padding: 30px; width: 100%;">
+						<div class="box_title">
+							<h3>
+								<span class="boxtitle"> <i>Overview</i>
+								</span>
+							</h3>
+						</div>
+						<table border="0" width="100%">
+							<tr align="center">
+								<td><h4>Start Time</h4></td>
+								<td><h4>
+										<c:out value="${dbTO.startTime}" />
+									</h4></td>
+							</tr>
+							<tr align="center">
+								<td><h4>End Time</h4></td>
+								<td><h4>
+										<c:out value="${dbTO.endTime}" />
+									</h4></td>
+							</tr>
+							<tr align="center">
+								<td><h4>Average Value</h4></td>
+								<td><h4>
+										<c:out value="${dbTO.avgValue}" />
+									</h4></td>
+							</tr>
+							<tr align="center">
+								<td><h4>Current State</h4></td>
+								<td><h4>
+										<c:out value="${state}" />
+									</h4></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td valign="middle" style="padding: 30px; width: 100%;">
+						<div class="box_title">
+							<h4>
+								<span class="boxtitle"> <i>Second Level Details</i>
+								</span>
+							</h4>
+						</div>
+						<form method="get" action="/cs/sp2">
+							<table border="0" width="100%">
+								<tr align="center">
+									<td><h5>Start Time (DD/MM/YYYY HH24:MI:SS)</h5></td>
+									<td><input type="text" name="startTime"
+										value="${dbTO.startTime}" /></td>
+								</tr>
+								<tr align="center">
+									<td><h5>End Time (DD/MM/YYYY HH24:MI:SS)</h5></td>
+									<td><input type="text" name="endTime"
+										value="${dbTO.endTime}" /></td>
+								</tr>
+								<tr align="center">
+									<td><h5>Interval X (Min)</h5></td>
+									<td><input type="text" name="x" value="60" /></td>
+								</tr>
+								<tr align="center">
+									<td colspan="2"><input type="submit" name="Submit" /></td>
+								</tr>
+							</table>
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
-	
-	<div class="container">
-		<form method="get" action="/cs/sp2">
-			<table width="800" cellspacing="0" cellpadding="0" border="0" align="center">
-				<tr>
-					<td colspan="2"><h4>Detailed Report</h4></td>
-				</tr>
-				<tr>
-					<td><h4>Start Time (DD/MM/YYYY HH24:MI:SS)</h4></td>
-					<td><input type="text" name="startTime" value="${dbTO.startTime}"/></td>
-				</tr>
-				<tr>
-					<td><h4>End Time (DD/MM/YYYY HH24:MI:SS)</h4></td>
-					<td><input type="text" name="endTime" value="${dbTO.endTime}"/></td>
-				</tr>
-				<tr>
-					<td><h4>Interval (Min)</h4></td>
-					<td><input type="text" name="x" value="60"/></td>
-				</tr>
-				<tr>
-					<td colspan="2" align="right"><input type="submit" name="Submit" /></td>
-				</tr>
-			</table>
-		</form>
-	</div>
-	
 </body>
 </html>

@@ -4,8 +4,7 @@
 <html>
 <head>
 <title>Shared Pool</title>
-<link
-	href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css"
+<link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css"
 	rel="stylesheet">
 <link
 	href="http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css"
@@ -28,13 +27,13 @@
 				<a class="brand" href="/cs">cs5226</a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-						<li class="active"><a href="afterlogin">Home</a></li>
+						<li><a href="afterlogin">Home</a></li>
 						<li><a href="dbi">Overall DataBase</a></li>
-			              <li><a href="sp">Shared Pool</a></li>
-			              <li><a href="bc">Buffer Cache</a></li>
-			              <li><a href="rl">Redo Log Buffer/Files</a></li>
-			              <li><a href="ma">Memory Area</a></li>
-			              <li><a href="db">Debug mode</a></li>
+						<li class="active"><a href="sp">Shared Pool</a></li>
+						<li><a href="bc">Buffer Cache</a></li>
+						<li><a href="rl">Redo Log Buffer/Files</a></li>
+						<li><a href="ma">Memory Area</a></li>
+						<li><a href="db">Debug mode</a></li>
 					</ul>
 				</div>
 				<!--/.nav-collapse -->
@@ -42,41 +41,52 @@
 		</div>
 	</div>
 	<!--  display area -->
-	<div align="left">
-	<table width="800" cellspacing="0" cellpadding="0" border="2">
-		<tbody>
-			<tr>
-				<td valign="top" style="padding: 0px; width: 100%;">
-				<div class="box_title"><span class="boxtitle">Low Level Breakdown - Shared Pool</span></div>
-				<table border="0" width="100%">
-					<tr>
-						<td width="100%">
-							<table width="100%">
-								<tr>
-									<td>Metric Monitored:</td>
-									<td> Here we need to put the metric name</td>
+	<div class="container" align="center">
+		<table width="800" cellspacing="0" cellpadding="0" border="0"
+			align="center">
+			<tbody>
+				<tr>
+					<td align="center" valign="middle"
+						style="padding: 30px; width: 100%;">
+						<h1>Shared Pool</h1>
+					</td>
+				<tr>
+					<td valign="middle" style="padding: 30px; width: 100%;">
+						<div class="box_title">
+							<h3>
+								<span class="boxtitle"> <i>Low Level Details</i>
+								</span>
+							</h3>
+						</div>
+						<table border="0" width="100%">
+							<tr align="center">
+								<th>S/N</th>
+								<th>Start Time</th>
+								<th>End Time</th>
+								<th>Average Value</th>
+								<th>Status</th>
+							</tr>
+							<%
+								int i = 0;
+							%>
+							<c:forEach items="${dbTOList}" var="dbTO">
+								<%
+									i++;
+								%>
+								<tr align="center">
+									<td><%=i%></td>
+									<td><c:out value="${dbTO.startTime}" /></td>
+									<td><c:out value="${dbTO.endTime}" /></td>
+									<td><c:out value="${dbTO.avgValue}" /></td>
+									<td><c:out value="${dbTO.otherData}" /></td>
 								</tr>
-								<tr>
-									<td>Start Date:</td>
-									<td> Here we need to put the start time of the interval</td>
-								</tr>
-								<tr>
-									<td>End Date:</td>
-									<td>Here we need to put the start time of the interval</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<td width="100%" align="center">
-						<p>This area is to draw the table for breakdown intervals.</p>
-						</td>
-					</tr>
-				</table>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+							</c:forEach>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
+
 </body>
 </html>
