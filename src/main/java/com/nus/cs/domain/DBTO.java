@@ -7,6 +7,7 @@ public class DBTO {
 	private double avgValue;
 	private String otherData;
 	private String interval;
+	private String status;
 	
 	public String getStartTime() {
 		return startTime;
@@ -37,6 +38,12 @@ public class DBTO {
 	}
 	public void setInterval(String interval) {
 		this.interval = interval;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 }

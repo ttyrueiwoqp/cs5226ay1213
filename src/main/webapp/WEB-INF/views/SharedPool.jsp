@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="false"%>
 <html>
 <head>
@@ -32,7 +32,7 @@
 						<li class="active"><a href="sp">Shared Pool</a></li>
 						<li><a href="bc">Buffer Cache</a></li>
 						<li><a href="rl">Redo Log Buffer/Files</a></li>
-						<li><a href="ma">Memory Area</a></li>
+						<li><a href="in">Memory Area</a></li>
 						<li><a href="db">Debug mode</a></li>
 					</ul>
 				</div>
@@ -74,14 +74,27 @@
 							<tr align="center">
 								<td><h4>Average Value</h4></td>
 								<td><h4>
-										<c:out value="${dbTO.avgValue}" />
+										<fmt:formatNumber type="percent" maxFractionDigits="2"
+											value="${dbTO.avgValue/100}" />
 									</h4></td>
 							</tr>
 							<tr align="center">
-								<td><h4>Current State</h4></td>
-								<td><h4>
-										<c:out value="${state}" />
-									</h4></td>
+								<td><h4>Current Status</h4></td>
+								<c:choose>
+									<c:when test="${dbTO.status == 'HEALTHY'}">
+										<td style="color: #00FF00">
+									</c:when>
+									<c:when test="${dbTO.status == 'MODERATE'}">
+										<td style="color: #FFBF00">
+									</c:when>
+									<c:otherwise>
+										<td style="color: #DF0101">
+									</c:otherwise>
+								</c:choose>
+								<h4>
+									<c:out value="${dbTO.status}" />
+								</h4>
+								</td>
 							</tr>
 						</table>
 					</td>
