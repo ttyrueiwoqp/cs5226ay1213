@@ -12,14 +12,14 @@ import java.util.Map;
 
 import com.nus.cs.dao.DBDao;
 import com.nus.cs.domain.DBTO;
+import com.nus.cs.domain.ThredTO;
+import com.nus.cs.util.ConnectionUtil;
 import com.nus.cs.util.Constants;
 import com.nus.cs.util.DateUtil;
 
 public class DBService {
 
 	private DBDao dbDao = new DBDao();
-
-	static public Map<String, Integer> threshold = new HashMap<String, Integer>();
 
 	public List<DBTO> getDataList(String table, String startTime,
 			String endTime, String interval) throws ParseException,
@@ -34,59 +34,49 @@ public class DBService {
 
 		Date tempStartDate = startDate;
 		Date tempEndDate = null;
-		
-		Connection conn = dbDao.createConnection();
-		
+
+		ThredTO thredTO = this.getThreshold();
+
+		Connection conn = ConnectionUtil.createConnection();
+
 		while (tempStartDate.before(endDate)) {
 			tempEndDate = DateUtil.addMin(tempStartDate, timeInteval);
-			DBTO tmp = dbDao.getData(conn, table, DateUtil.getDateAsString(tempStartDate),
+			DBTO tmp = dbDao.getData(conn, table,
+					DateUtil.getDateAsString(tempStartDate),
 					DateUtil.getDateAsString(tempEndDate));
 			if (tmp != null) {
-				
 				tmp.setInterval(interval);
-				
-				if (tmp.getAvgValue() >= 80)
-					tmp.setStatus(Constants.HEALTHY);
-				else if (tmp.getAvgValue() >= 60)
-					tmp.setStatus(Constants.MODERATE);
-				else
-					tmp.setStatus(Constants.ATTENTION);
-				
+				this.setDBTOStatus(tmp, thredTO);
 				results.add(tmp);
 			}
 			tempStartDate = tempEndDate;
 		}
-		
 		conn.close();
 
 		return results;
-
 	}
 
 	public DBTO getData(String table, String startTime, String endTime)
 			throws SQLException, InstantiationException,
 			IllegalAccessException, ClassNotFoundException {
 
-		Connection conn = dbDao.createConnection();
+		Connection conn = ConnectionUtil.createConnection();
 
-		DBTO ret = dbDao.getData(conn, table, startTime, endTime);
-		
-		if (ret.getAvgValue() >= 80)
-			ret.setStatus(Constants.HEALTHY);
-		else if (ret.getAvgValue() >= 60)
-			ret.setStatus(Constants.MODERATE);
-		else
-			ret.setStatus(Constants.ATTENTION);
+		DBTO dbTO = dbDao.getData(conn, table, startTime, endTime);
+
+		ThredTO thredTO = this.getThreshold();
+
+		this.setDBTOStatus(dbTO, thredTO);
 
 		conn.close();
 
-		return ret;
+		return dbTO;
 	}
 
 	public void initThreshold() throws SQLException, InstantiationException,
 			IllegalAccessException, ClassNotFoundException {
 
-		Connection conn = dbDao.createConnection();
+		Connection conn = ConnectionUtil.createConnection();
 
 		dbDao.initThreshold(conn);
 
@@ -95,16 +85,83 @@ public class DBService {
 		return;
 	}
 
-	public void getThreshold() throws SQLException, InstantiationException,
+	public ThredTO getThreshold() throws SQLException, InstantiationException,
 			IllegalAccessException, ClassNotFoundException {
 
-		Connection conn = dbDao.createConnection();
+		Connection conn = ConnectionUtil.createConnection();
 
-		dbDao.getThreshold(conn, threshold);
+		Map<String, Integer> thredMap = dbDao.getThreshold(conn);
 
 		conn.close();
 
-		return;
+		ThredTO thredTO = new ThredTO();
+
+		thredTO.setSp1(thredMap.get(Constants.SHARED_POOL + Constants.WARNING));
+		thredTO.setSp2(thredMap.get(Constants.SHARED_POOL + Constants.CRITICAL));
+		thredTO.setBc1(thredMap.get(Constants.BUFFER_CACHE + Constants.WARNING));
+		thredTO.setBc2(thredMap
+				.get(Constants.BUFFER_CACHE + Constants.CRITICAL));
+		thredTO.setRlb1(thredMap.get(Constants.REDO_LOG_BUFFER
+				+ Constants.WARNING));
+		thredTO.setRlb2(thredMap.get(Constants.REDO_LOG_BUFFER
+				+ Constants.CRITICAL));
+		thredTO.setRlf1(thredMap.get(Constants.REDO_LOG_FILES
+				+ Constants.WARNING));
+		thredTO.setRlf2(thredMap.get(Constants.REDO_LOG_FILES
+				+ Constants.CRITICAL));
+		thredTO.setMa1(thredMap.get(Constants.MEMORY_AREA + Constants.WARNING));
+		thredTO.setMa1(thredMap.get(Constants.MEMORY_AREA + Constants.CRITICAL));
+
+		return thredTO;
+	}
+
+	private void setDBTOStatus(DBTO dbTO, ThredTO thredTO) {
+
+		if (dbTO.getTable().equals(Constants.SHARED_POOL_ID)) {
+
+			if (dbTO.getAvgValue() < thredTO.getSp1())
+				dbTO.setStatus(Constants.HEALTHY);
+			else if (dbTO.getAvgValue() < thredTO.getSp2())
+				dbTO.setStatus(Constants.MODERATE);
+			else
+				dbTO.setStatus(Constants.ATTENTION);
+
+		} else if (dbTO.getTable().equals(Constants.BUFFER_CACHE_ID)) {
+
+			if (dbTO.getAvgValue() < thredTO.getBc1())
+				dbTO.setStatus(Constants.HEALTHY);
+			else if (dbTO.getAvgValue() < thredTO.getBc2())
+				dbTO.setStatus(Constants.MODERATE);
+			else
+				dbTO.setStatus(Constants.ATTENTION);
+
+		} else if (dbTO.getTable().equals(Constants.REDO_LOG_BUFFER_ID)) {
+
+			if (dbTO.getAvgValue() < thredTO.getRlb1())
+				dbTO.setStatus(Constants.HEALTHY);
+			else if (dbTO.getAvgValue() < thredTO.getRlb2())
+				dbTO.setStatus(Constants.MODERATE);
+			else
+				dbTO.setStatus(Constants.ATTENTION);
+
+		} else if (dbTO.getTable().equals(Constants.REDO_LOG_FILES_ID)) {
+
+			if (dbTO.getAvgValue() < thredTO.getRlf1())
+				dbTO.setStatus(Constants.HEALTHY);
+			else if (dbTO.getAvgValue() < thredTO.getRlf2())
+				dbTO.setStatus(Constants.MODERATE);
+			else
+				dbTO.setStatus(Constants.ATTENTION);
+
+		} else if (dbTO.getTable().equals(Constants.MEMORY_AREA_ID)) {
+
+			if (dbTO.getAvgValue() < thredTO.getMa1())
+				dbTO.setStatus(Constants.HEALTHY);
+			else if (dbTO.getAvgValue() < thredTO.getMa2())
+				dbTO.setStatus(Constants.MODERATE);
+			else
+				dbTO.setStatus(Constants.ATTENTION);
+		}
 	}
 
 }

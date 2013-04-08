@@ -1,13 +1,8 @@
 package com.nus.cs.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +22,8 @@ public class SignInController {
                             String id,@ModelAttribute("password")
                             String password, BindingResult result) {
          
-        System.out.println("First Name:" + id + 
-                    "Last Name:" + password);
+//        System.out.println("First Name:" + id + 
+//                    "Last Name:" + password);
         
         if(id.equals("dba")&&password.equals("dba")){
         	return "afterlogin";
