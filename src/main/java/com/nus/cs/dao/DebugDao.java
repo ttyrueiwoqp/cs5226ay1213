@@ -18,6 +18,7 @@ public class DebugDao extends JdbcDaoSupport{
 	public  void execute(String sql, DebugTO dbTO) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		boolean success = true;
 		String error = "";
+		List<String> header = new ArrayList<String>();
 		List<List<String>>table = new ArrayList<List<String>>();
 		
 		try {
@@ -32,15 +33,13 @@ public class DebugDao extends JdbcDaoSupport{
 				ResultSet rs = ps.getResultSet();
 				ResultSetMetaData md = rs.getMetaData();
 				int numOfCols = md.getColumnCount();
+			
+				for(int i=0; i<numOfCols; i++) {
+					header.add(md.getColumnName(i+1));
+				}
+			
 				
 				List<String> cur;
-				
-				cur = new ArrayList<String>();
-				for(int i=0; i<numOfCols; i++) {
-					cur.add(md.getColumnName(i+1));
-				}
-				table.add(cur);
-				
 				while(rs.next()) {
 					cur = new ArrayList<String>();
 					for(int i=0; i<numOfCols; i++) {
@@ -59,6 +58,7 @@ public class DebugDao extends JdbcDaoSupport{
 		}
 		
 		dbTO.setSuccess(success);
+		dbTO.setHeader(header);
 		dbTO.setTable(table);
 		dbTO.setError(error);
 	}

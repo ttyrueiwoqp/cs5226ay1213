@@ -34,7 +34,7 @@
 			              <li><a href="bc">Buffer Cache</a></li>
 			              <li><a href="rl">Redo Log Buffer/Files</a></li>
 			              <li><a href="ma">Memory Area</a></li>
-			              <li><a href="db">Debug mode</a></li>
+			              <li><a href="debug">Debug mode</a></li>
 					</ul>
 				</div>
 				<!--/.nav-collapse -->

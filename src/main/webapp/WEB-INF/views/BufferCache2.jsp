@@ -117,11 +117,23 @@
 											</c:when>
 											<c:otherwise>
 												<td style="color: #DF0101">
+												<a href="advisor?attention=BufferCache" style="color: #DF0101">
 											</c:otherwise>
 										</c:choose>
 										<h5>
 											<c:out value="${dbTO.status}" />
 										</h5>
+										<c:choose>
+											<c:when test="${dbTO.status == 'HEALTHY'}">
+												
+											</c:when>
+											<c:when test="${dbTO.status == 'MODERATE'}">
+												
+											</c:when>
+											<c:otherwise>
+												</a>
+											</c:otherwise>
+										</c:choose>
 										</td>
 									</tr>
 								</c:forEach>

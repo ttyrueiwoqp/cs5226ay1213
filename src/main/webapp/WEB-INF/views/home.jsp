@@ -76,8 +76,8 @@ body {
 
 		<form class="form-signin" method="post" action="/cs/login">
 			<h2 class="form-signin-heading">Please sign in</h2>
-			<input type="text" class="input-block-level" name="id" />
-			<input type="password" class="input-block-level" name="password" /> 		
+			username: <input type="text" class="input-block-level" name="id" />
+			password: <input type="password" class="input-block-level" name="password" /> 		
 			<input type="submit" value="Sign in"/>
 		</form>
 

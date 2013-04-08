@@ -63,36 +63,43 @@
 			<tr><td>
 				<div align="left"><h5>Results:</h5></div>
 				<div>
-					<%
-					List<List<String>> table;
-					
-					table =(List<List<String>>) request.getAttribute("table");
-					int num = table.size();
-					%>
-					<table border="2">
-					<%  
-					Iterator<List<String>> iter = table.iterator();
-					while(iter.hasNext()) {
-					%>
-						<tr> 
-					<%
-						List<String> row = iter.next();
-						int cols = row.size();
-						for(int i=0; i<cols; i++) {
-					%>
-							<td> 
-					<%= 
-							row.get(i)
-					%> 
-							</td> 
-					<%
-						}
-						%>
-						</tr>
-						<%
-					}
-						%>
-					</table>
+					<c:choose>
+						<c:when test="${success == 'true'}">
+							<table border="0" width="100%">
+								<tr align="center" bgcolor="#1B1B1B">
+									<c:forEach items="${theader}" var="hcol">
+										<th><font color="#FAFAFA"><c:out value="${hcol}"></c:out></font></th>
+									</c:forEach>
+								</tr>
+								<%
+									int i = 0;
+								%>
+								<c:forEach items="${table}" var="row">
+									<%
+										i++;
+									%>
+									<%
+										if ((i % 2) == 0) {
+									%>
+									<tr align="center" bgcolor="#FFFFFF">
+										<%
+											} else {
+										%>
+									
+									<tr align="center" bgcolor="#FAFAFA">
+										<%
+											}
+										%>
+										<c:forEach items="${row}" var="col">
+											<td>
+												<c:out value="${col}"></c:out>
+											</td>
+										</c:forEach>
+									</tr>
+								</c:forEach>
+							</table>
+						</c:when>
+					</c:choose>
 					
 				</div>
 				

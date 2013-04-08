@@ -4,8 +4,17 @@ import java.util.List;
 
 public class DebugTO {
 	private boolean success;
+	private List<String> header;
 	private List<List<String>> table;
 	private String error;
+	
+	public List<String> getHeader() {
+		return header;
+	}
+	
+	public void setHeader(List<String> header) {
+		this.header = header;
+	}
 	
 	public boolean getSuccess() {
 		return success;
