@@ -45,6 +45,7 @@
 	</div>
 	<c:set var="HEALTHY" value="<%=Constants.HEALTHY%>" />
 	<c:set var="MODERATE" value="<%=Constants.MODERATE%>" />
+	<c:set var="ATTENTION" value="<%=Constants.ATTENTION%>" />
 	<!--  display area -->
 	<div class="container" align="center">
 		<table width="800" cellspacing="0" cellpadding="0" border="0"
@@ -88,11 +89,13 @@
 									</c:when>
 									<c:otherwise>
 										<td style="color: #DF0101">
+										<a href="advisor?attention=SharedPool" style="color: #DF0101">
 									</c:otherwise>
 								</c:choose>
 								<h4>
 									<c:out value="${spTO.status}" />
 								</h4>
+								<c:if test="${spTO.status == ATTENTION}"></a></c:if>
 								</td>
 							</tr>
 							<tr align="center">
@@ -106,11 +109,13 @@
 									</c:when>
 									<c:otherwise>
 										<td style="color: #DF0101">
+										<a href="advisor?attention=BufferCache" style="color: #DF0101">
 									</c:otherwise>
 								</c:choose>
 								<h4>
 									<c:out value="${bcTO.status}" />
 								</h4>
+								<c:if test="${bcTO.status == ATTENTION}"></a></c:if>
 								</td>
 							</tr>
 							<tr align="center">
@@ -124,11 +129,13 @@
 									</c:when>
 									<c:otherwise>
 										<td style="color: #DF0101">
+										<a href="advisor?attention=RedoLogBuffer" style="color: #DF0101">
 									</c:otherwise>
 								</c:choose>
 								<h4>
 									<c:out value="${rlbTO.status}" />
 								</h4>
+								<c:if test="${rlbTO.status == ATTENTION}"></a></c:if>
 								</td>
 							</tr>
 							<tr align="center">
@@ -142,11 +149,13 @@
 									</c:when>
 									<c:otherwise>
 										<td style="color: #DF0101">
+										<a href="advisor?attention=RedoLogFiles" style="color: #DF0101">
 									</c:otherwise>
 								</c:choose>
 								<h4>
 									<c:out value="${rlfTO.status}" />
 								</h4>
+								<c:if test="${rlfTO.status == ATTENTION}"></a></c:if>
 								</td>
 							</tr>
 							<tr align="center">
@@ -160,11 +169,13 @@
 									</c:when>
 									<c:otherwise>
 										<td style="color: #DF0101">
+										<a href="advisor?attention=MemoryArea" style="color: #DF0101">
 									</c:otherwise>
 								</c:choose>
 								<h4>
 									<c:out value="${maTO.status}" />
 								</h4>
+								<c:if test="${maTO.status == ATTENTION}"></a></c:if>
 								</td>
 							</tr>
 						</table>

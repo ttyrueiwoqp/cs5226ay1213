@@ -30,7 +30,7 @@
 					<ul class="nav">
 						<li><a href="afterlogin">Overall Database</a></li>
 						<li><a href="sp">Shared Pool</a></li>
-						<li class="active"><a href="bc">Buffer Cache</a></li>
+						<li><a href="bc">Buffer Cache</a></li>
 						<li><a href="rlb">Redo Log Buffer</a></li>
 						<li><a href="rlf">Redo Log Files</a></li>
 						<li><a href="ma">Memory Area</a></li>
