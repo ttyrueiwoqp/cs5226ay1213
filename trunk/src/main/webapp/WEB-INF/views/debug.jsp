@@ -37,7 +37,7 @@
 						<li><a href="ma">Memory Area</a></li>
 						<li><a href="rpt">Database Report</a></li>
 						<li><a href="th">Threshold Setting</a></li>
-						<li class="active"><a href="db">Debug mode</a></li>
+						<li class="active"><a href="debug">Debug Mode</a></li>
 					</ul>
 				</div>
 				<!--/.nav-collapse -->
