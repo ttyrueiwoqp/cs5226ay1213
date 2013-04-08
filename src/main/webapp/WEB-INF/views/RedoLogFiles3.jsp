@@ -98,7 +98,8 @@
 											<c:out value="${dbTO.endTime}" />
 										</h5></td>
 									<td><h5>
-											<fmt:formatNumber type="number" value="${dbTO.avgValue}" />
+											<fmt:formatNumber type="number" minFractionDigits="3"
+												maxFractionDigits="3" value="${dbTO.avgValue}" />
 										</h5></td>
 									<c:choose>
 										<c:when test="${dbTO.status == HEALTHY}">
@@ -116,10 +117,10 @@
 										<c:out value="${dbTO.status}" />
 									</h5>
 									<c:choose>
-										<c:when test="${dbTO.status == 'HEALTHY'}">
+										<c:when test="${dbTO.status == HEALTHY}">
 
 										</c:when>
-										<c:when test="${dbTO.status == 'MODERATE'}">
+										<c:when test="${dbTO.status == MODERATE}">
 
 										</c:when>
 										<c:otherwise>

@@ -57,7 +57,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td valign="middle" style="padding: 30px; width: 100%;">
+					<td valign="middle" style="padding: 30px; width: 100%; background-color:#FAFAFA;">
 						<div class="box_title">
 							<h3>
 								<span class="boxtitle"> <i>Overview</i>
@@ -80,7 +80,8 @@
 							<tr align="center">
 								<td><h4>Redo Log Files Total Waits</h4></td>
 								<td><h4>
-										<fmt:formatNumber type="number" value="${dbTO.avgValue}" />
+										<fmt:formatNumber type="number" minFractionDigits="3"
+											maxFractionDigits="3" value="${dbTO.avgValue}" />
 									</h4></td>
 							</tr>
 							<tr align="center">
@@ -93,23 +94,23 @@
 										<td style="color: #FFBF00">
 									</c:when>
 									<c:otherwise>
-										<td style="color: #DF0101">
-										<a href="advisor?attention=RedoLogFiles"style="color: #DF0101">
+										<td style="color: #DF0101"><a
+											href="advisor?attention=RedoLogFiles" style="color: #DF0101">
 									</c:otherwise>
 								</c:choose>
 								<h4>
 									<c:out value="${dbTO.status}" />
 								</h4>
 								<c:choose>
-									<c:when test="${dbTO.status == 'HEALTHY'}">
-										
+									<c:when test="${dbTO.status == HEALTHY}">
+
 									</c:when>
-									<c:when test="${dbTO.status == 'MODERATE'}">
-										
+									<c:when test="${dbTO.status == MODERATE}">
+
 									</c:when>
 									<c:otherwise>
 										</a>
-								
+
 									</c:otherwise>
 								</c:choose>
 								</td>
@@ -118,7 +119,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td valign="middle" style="padding: 30px; width: 100%;">
+					<td valign="middle" style="padding: 30px; width: 100%; background-color:#F2F2F2;">
 						<div class="box_title">
 							<h4>
 								<span class="boxtitle"> <i>Second Level Details</i>

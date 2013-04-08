@@ -29,7 +29,7 @@ public class RedoLogFilesController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/rlf", method = RequestMethod.GET)
-	public String sp(Locale locale, Model model) {
+	public String rlf(Locale locale, Model model) {
 
 		Calendar cal = Calendar.getInstance();
 		Date now = new Date(cal.getTime().getTime());
@@ -55,7 +55,7 @@ public class RedoLogFilesController {
 	}
 
 	@RequestMapping(value = "/rlf2", method = RequestMethod.POST)
-	public String sp2(Model model,
+	public String rlf2(Model model,
 			@ModelAttribute("startTime") String startTime,
 			@ModelAttribute("endTime") String endTime,
 			@ModelAttribute("x") String x) {
@@ -81,7 +81,7 @@ public class RedoLogFilesController {
 	}
 
 	@RequestMapping(value = "/rlf3", method = RequestMethod.POST)
-	public String sp3(Model model, 
+	public String rlf3(Model model, 
 			@ModelAttribute("startend") String startend,
 			@ModelAttribute("y") String y) {
 

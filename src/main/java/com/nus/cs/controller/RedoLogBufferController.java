@@ -29,7 +29,7 @@ public class RedoLogBufferController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/rlb", method = RequestMethod.GET)
-	public String sp(Locale locale, Model model) {
+	public String rlb(Locale locale, Model model) {
 
 		Calendar cal = Calendar.getInstance();
 		Date now = new Date(cal.getTime().getTime());
@@ -55,7 +55,7 @@ public class RedoLogBufferController {
 	}
 
 	@RequestMapping(value = "/rlb2", method = RequestMethod.POST)
-	public String sp2(Model model,
+	public String rlb2(Model model,
 			@ModelAttribute("startTime") String startTime,
 			@ModelAttribute("endTime") String endTime,
 			@ModelAttribute("x") String x) {
@@ -81,7 +81,7 @@ public class RedoLogBufferController {
 	}
 
 	@RequestMapping(value = "/rlb3", method = RequestMethod.POST)
-	public String sp3(Model model, 
+	public String rlb3(Model model, 
 			@ModelAttribute("startend") String startend,
 			@ModelAttribute("y") String y) {
 

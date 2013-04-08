@@ -124,10 +124,10 @@
 											<c:out value="${dbTO.status}" />
 										</h5>
 										<c:choose>
-											<c:when test="${dbTO.status == 'HEALTHY'}">
+											<c:when test="${dbTO.status == HEALTHY}">
 												
 											</c:when>
-											<c:when test="${dbTO.status == 'MODERATE'}">
+											<c:when test="${dbTO.status == MODERATE}">
 												
 											</c:when>
 											<c:otherwise>
