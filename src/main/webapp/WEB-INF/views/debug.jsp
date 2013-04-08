@@ -57,7 +57,7 @@
 			
 			<tr><td width="800" height="30">
 				<div align="left"><h5>Error Information:</h5></div>
-				<textarea rows="10" cols="300" name="info" style="width: 100%; height: 100%">${error}</textarea>
+				<textarea readonly rows="3" cols="300" name="info" style="width: 100%; height: 100%">${error}</textarea>
 			</td></tr>
 			
 			<tr><td>

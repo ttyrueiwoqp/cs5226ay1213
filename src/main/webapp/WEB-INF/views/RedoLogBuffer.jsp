@@ -98,9 +98,9 @@
 										<a href="advisor?attention=RedoLogBuffer" style="color: #DF0101">
 									</c:otherwise>
 								</c:choose>
-								<h5>
+								<h4>
 									<c:out value="${dbTO.status}" />
-								</h5>
+								</h4>
 								<c:choose>
 									<c:when test="${dbTO.status == 'HEALTHY'}">
 										
