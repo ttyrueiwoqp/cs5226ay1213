@@ -21,14 +21,14 @@ import com.nus.cs.util.DateUtil;
  * Handles requests for the application home page.
  */
 @Controller
-public class SharedPoolController {
+public class RedoLogBufferController {
 
 	private DBService dbService = new DBService();
 
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/sp", method = RequestMethod.GET)
+	@RequestMapping(value = "/rlb", method = RequestMethod.GET)
 	public String sp(Locale locale, Model model) {
 
 		Calendar cal = Calendar.getInstance();
@@ -37,7 +37,7 @@ public class SharedPoolController {
 
 		DBTO dbTO = null;
 		try {
-			dbTO = dbService.getData(Constants.SHARED_POOL_ID, DateUtil.getDateAsString(before),
+			dbTO = dbService.getData(Constants.REDO_LOG_BUFFER_ID, DateUtil.getDateAsString(before),
 					DateUtil.getDateAsString(now));
 		} catch (InstantiationException e) {
 			e.printStackTrace();
@@ -51,10 +51,10 @@ public class SharedPoolController {
 
 		model.addAttribute("dbTO", dbTO);
 
-		return "SharedPool";
+		return "RedoLogBuffer";
 	}
 
-	@RequestMapping(value = "/sp2", method = RequestMethod.POST)
+	@RequestMapping(value = "/rlb2", method = RequestMethod.POST)
 	public String sp2(Model model,
 			@ModelAttribute("startTime") String startTime,
 			@ModelAttribute("endTime") String endTime,
@@ -62,7 +62,7 @@ public class SharedPoolController {
 
 		List<DBTO> dbTOList = null;
 		try {
-			dbTOList = dbService.getDataList(Constants.SHARED_POOL_ID, startTime, endTime, x);
+			dbTOList = dbService.getDataList(Constants.REDO_LOG_BUFFER_ID, startTime, endTime, x);
 		} catch (InstantiationException e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
@@ -77,10 +77,10 @@ public class SharedPoolController {
 
 		model.addAttribute("dbTOList", dbTOList);
 
-		return "SharedPool2";
+		return "RedoLogBuffer2";
 	}
 
-	@RequestMapping(value = "/sp3", method = RequestMethod.POST)
+	@RequestMapping(value = "/rlb3", method = RequestMethod.POST)
 	public String sp3(Model model, 
 			@ModelAttribute("startend") String startend,
 			@ModelAttribute("y") String y) {
@@ -91,7 +91,7 @@ public class SharedPoolController {
 
 		List<DBTO> dbTOList = null;
 		try {
-			dbTOList = dbService.getDataList(Constants.SHARED_POOL_ID, startTime, endTime, y);
+			dbTOList = dbService.getDataList(Constants.REDO_LOG_BUFFER_ID, startTime, endTime, y);
 		} catch (InstantiationException e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
@@ -106,7 +106,7 @@ public class SharedPoolController {
 
 		model.addAttribute("dbTOList", dbTOList);
 
-		return "SharedPool3";
+		return "RedoLogBuffer3";
 	}
 
 }

@@ -22,9 +22,6 @@ public class SignInController {
                             String id,@ModelAttribute("password")
                             String password, BindingResult result) {
          
-//        System.out.println("First Name:" + id + 
-//                    "Last Name:" + password);
-        
         if(id.equals("dba")&&password.equals("dba")){
         	return "afterlogin";
         }else{
