@@ -6,8 +6,6 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,9 +22,6 @@ import com.nus.cs.util.DateUtil;
  */
 @Controller
 public class BufferCacheController {
-
-	private static final Logger logger = LoggerFactory
-			.getLogger(DBIController.class);
 
 	private DBService dbService = new DBService();
 
