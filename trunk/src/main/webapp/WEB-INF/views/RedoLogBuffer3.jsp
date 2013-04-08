@@ -117,8 +117,6 @@
 									</h5>
 									</td>
 								</tr>
-
-
 							</c:forEach>
 						</table>
 					</td>
