@@ -30,8 +30,6 @@ public class DBDao extends JdbcDaoSupport {
 		ps.setString(2, startTime);
 		ps.setString(3, endTime);
 
-		System.out.println(startTime);
-		System.out.println(endTime);
 		ResultSet rs = ps.executeQuery();
 
 		DBTO dbTO = new DBTO();

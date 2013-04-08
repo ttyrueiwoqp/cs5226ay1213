@@ -27,7 +27,7 @@ public class DebugController {
 	
 	@RequestMapping(value = "/debug", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		logger.info("Welcome db! The client locale is {}.", locale);
+
 		String error="This area will display error information from sql server.";
 		model.addAttribute("error", error);
 		List<List<String>> table = new ArrayList<List<String>>();
