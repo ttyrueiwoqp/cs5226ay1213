@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="com.nus.cs.util.Constants"%>
 <%@ page session="false"%>
 <html>
 <head>
@@ -27,12 +28,14 @@
 				<a class="brand" href="/cs">cs5226</a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-						<li><a href="afterlogin">Home</a></li>
-						<li><a href="dbi">Overall DataBase</a></li>
+						<li><a href="afterlogin">Overall Database</a></li>
 						<li class="active"><a href="sp">Shared Pool</a></li>
 						<li><a href="bc">Buffer Cache</a></li>
-						<li><a href="rl">Redo Log Buffer/Files</a></li>
+						<li><a href="rlb">Redo Log Buffer</a></li>
+						<li><a href="rlf">Redo Log Files</a></li>
 						<li><a href="ma">Memory Area</a></li>
+						<li><a href="rpt">Database Report</a></li>
+						<li><a href="th">Threshold Setting</a></li>
 						<li><a href="db">Debug mode</a></li>
 					</ul>
 				</div>
@@ -40,6 +43,8 @@
 			</div>
 		</div>
 	</div>
+	<c:set var="HEALTHY" value="<%=Constants.HEALTHY%>" />
+	<c:set var="MODERATE" value="<%=Constants.MODERATE%>" />
 	<!--  display area -->
 	<div class="container" align="center">
 		<table width="800" cellspacing="0" cellpadding="0" border="0"
@@ -50,6 +55,7 @@
 						style="padding: 30px; width: 100%;">
 						<h1>Shared Pool</h1>
 					</td>
+				</tr>
 				<tr>
 					<td valign="middle" style="padding: 30px; width: 100%;">
 						<div class="box_title">
@@ -74,17 +80,17 @@
 							<tr align="center">
 								<td><h4>Average Value</h4></td>
 								<td><h4>
-										<fmt:formatNumber type="percent" maxFractionDigits="2"
-											value="${dbTO.avgValue/100}" />
+										<fmt:formatNumber type="percent" minFractionDigits="2"
+											maxFractionDigits="2" value="${dbTO.avgValue/100}" />
 									</h4></td>
 							</tr>
 							<tr align="center">
 								<td><h4>Current Status</h4></td>
 								<c:choose>
-									<c:when test="${dbTO.status == 'HEALTHY'}">
+									<c:when test="${dbTO.status == HEALTHY}">
 										<td style="color: #00FF00">
 									</c:when>
-									<c:when test="${dbTO.status == 'MODERATE'}">
+									<c:when test="${dbTO.status == MODERATE}">
 										<td style="color: #FFBF00">
 									</c:when>
 									<c:otherwise>
@@ -107,7 +113,7 @@
 								</span>
 							</h4>
 						</div>
-						<form method="get" action="/cs/sp2">
+						<form method="post" action="/cs/sp2">
 							<table border="0" width="100%">
 								<tr align="center">
 									<td><h5>Start Time (DD/MM/YYYY HH24:MI:SS)</h5></td>

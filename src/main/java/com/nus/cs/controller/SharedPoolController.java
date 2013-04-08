@@ -59,7 +59,7 @@ public class SharedPoolController {
 		return "SharedPool";
 	}
 
-	@RequestMapping(value = "/sp2", method = RequestMethod.GET)
+	@RequestMapping(value = "/sp2", method = RequestMethod.POST)
 	public String sp2(Model model,
 			@ModelAttribute("startTime") String startTime,
 			@ModelAttribute("endTime") String endTime,
@@ -85,7 +85,7 @@ public class SharedPoolController {
 		return "SharedPool2";
 	}
 
-	@RequestMapping(value = "/sp3", method = RequestMethod.GET)
+	@RequestMapping(value = "/sp3", method = RequestMethod.POST)
 	public String sp3(Model model, 
 			@ModelAttribute("startend") String startend,
 			@ModelAttribute("y") String y) {
