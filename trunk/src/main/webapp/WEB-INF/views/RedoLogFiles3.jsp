@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page import="com.nus.cs.util.Constants" %>
+<%@ page import="com.nus.cs.util.Constants"%>
 <%@ page session="false"%>
 <html>
 <head>
@@ -43,8 +43,8 @@
 			</div>
 		</div>
 	</div>
-	<c:set var="HEALTHY" value="<%=Constants.HEALTHY %>" />
-	<c:set var="MODERATE" value="<%=Constants.MODERATE %>" />
+	<c:set var="HEALTHY" value="<%=Constants.HEALTHY%>" />
+	<c:set var="MODERATE" value="<%=Constants.MODERATE%>" />
 	<!--  display area -->
 	<div class="container" align="center">
 		<table width="800" cellspacing="0" cellpadding="0" border="0"
@@ -69,7 +69,7 @@
 								<th><font color="#F2F2F2">S/N</font></th>
 								<th><font color="#F2F2F2">Start Time</font></th>
 								<th><font color="#F2F2F2">End Time</font></th>
-								<th><font color="#F2F2F2">Average Value</font></th>
+								<th><font color="#F2F2F2">Redo Log Files Total Waits</font></th>
 								<th><font color="#F2F2F2">Status</font></th>
 							</tr>
 							<%
@@ -98,8 +98,7 @@
 											<c:out value="${dbTO.endTime}" />
 										</h5></td>
 									<td><h5>
-											<fmt:formatNumber type="percent" minFractionDigits="2"
-												maxFractionDigits="2" value="${dbTO.avgValue/100}" />
+											<fmt:formatNumber type="number" value="${dbTO.avgValue}" />
 										</h5></td>
 									<c:choose>
 										<c:when test="${dbTO.status == HEALTHY}">
@@ -109,12 +108,25 @@
 											<td style="color: #FFBF00">
 										</c:when>
 										<c:otherwise>
-											<td style="color: #DF0101">
+											<td style="color: #DF0101"><a
+												href="advisor?attention=RedoLogFiles" style="color: #DF0101">
 										</c:otherwise>
 									</c:choose>
 									<h5>
 										<c:out value="${dbTO.status}" />
 									</h5>
+									<c:choose>
+										<c:when test="${dbTO.status == 'HEALTHY'}">
+
+										</c:when>
+										<c:when test="${dbTO.status == 'MODERATE'}">
+
+										</c:when>
+										<c:otherwise>
+											</a>
+
+										</c:otherwise>
+									</c:choose>
 									</td>
 								</tr>
 							</c:forEach>

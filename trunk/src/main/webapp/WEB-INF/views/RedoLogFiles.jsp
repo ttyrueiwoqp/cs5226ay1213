@@ -78,10 +78,9 @@
 									</h4></td>
 							</tr>
 							<tr align="center">
-								<td><h4>Average Value</h4></td>
+								<td><h4>Redo Log Files Total Waits</h4></td>
 								<td><h4>
-										<fmt:formatNumber type="percent" minFractionDigits="2"
-											maxFractionDigits="2" value="${dbTO.avgValue/100}" />
+										<fmt:formatNumber type="number" value="${dbTO.avgValue}" />
 									</h4></td>
 							</tr>
 							<tr align="center">
@@ -95,11 +94,24 @@
 									</c:when>
 									<c:otherwise>
 										<td style="color: #DF0101">
+										<a href="advisor?attention=RedoLogFiles"style="color: #DF0101">
 									</c:otherwise>
 								</c:choose>
 								<h4>
 									<c:out value="${dbTO.status}" />
 								</h4>
+								<c:choose>
+									<c:when test="${dbTO.status == 'HEALTHY'}">
+										
+									</c:when>
+									<c:when test="${dbTO.status == 'MODERATE'}">
+										
+									</c:when>
+									<c:otherwise>
+										</a>
+								
+									</c:otherwise>
+								</c:choose>
 								</td>
 							</tr>
 						</table>

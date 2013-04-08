@@ -71,7 +71,7 @@
 									<th><font color="#F2F2F2">S/N</font></th>
 									<th><font color="#F2F2F2">Start Time</font></th>
 									<th><font color="#F2F2F2">End Time</font></th>
-									<th><font color="#F2F2F2">Average Value</font></th>
+									<th><font color="#F2F2F2">Redo Allocation Hit Ratio</font></th>
 									<th><font color="#F2F2F2">Status</font></th>
 								</tr>
 								<%

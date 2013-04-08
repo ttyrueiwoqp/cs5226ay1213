@@ -4,7 +4,7 @@
 <%@ page session="false"%>
 <html>
 <head>
-<title>Buffer Cache</title>
+<title>Advisor</title>
 <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css"
 	rel="stylesheet">
 <link
@@ -103,7 +103,7 @@
 			</c:forEach>
 		</table>
 		</c:when>
-		<c:when test="${metric == 'MemSort'}">
+		<c:when test="${metric == 'MemoryArea'}">
 		<table width="800">
 		<tr align="left">
 			<td>
