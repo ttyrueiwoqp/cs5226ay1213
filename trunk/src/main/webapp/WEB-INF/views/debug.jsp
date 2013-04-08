@@ -29,13 +29,15 @@
 				<a class="brand" href="/cs">cs5226</a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-						<li class="active"><a href="afterlogin">Home</a></li>
-						<li><a href="dbi">Overall DataBase</a></li>
-			              <li><a href="sp">Shared Pool</a></li>
-			              <li><a href="bc">Buffer Cache</a></li>
-			              <li><a href="rl">Redo Log Buffer/Files</a></li>
-			              <li><a href="ma">Memory Area</a></li>
-			              <li><a href="debug">Debug mode</a></li>
+						<li><a href="afterlogin">Overall Database</a></li>
+						<li><a href="sp">Shared Pool</a></li>
+						<li><a href="bc">Buffer Cache</a></li>
+						<li><a href="rlb">Redo Log Buffer</a></li>
+						<li><a href="rlf">Redo Log Files</a></li>
+						<li><a href="ma">Memory Area</a></li>
+						<li><a href="rpt">Database Report</a></li>
+						<li><a href="th">Threshold Setting</a></li>
+						<li class="active"><a href="db">Debug mode</a></li>
 					</ul>
 				</div>
 				<!--/.nav-collapse -->

@@ -85,6 +85,18 @@ public class DBService {
 		return;
 	}
 
+	public void updateThreshold(ThredTO thredTO) throws SQLException, InstantiationException,
+			IllegalAccessException, ClassNotFoundException {
+
+		Connection conn = ConnectionUtil.createConnection();
+
+		dbDao.updateThreshold(conn, thredTO);
+
+		conn.close();
+
+		return;
+	}
+
 	public ThredTO getThreshold() throws SQLException, InstantiationException,
 			IllegalAccessException, ClassNotFoundException {
 
