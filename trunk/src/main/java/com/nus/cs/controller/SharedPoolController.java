@@ -42,7 +42,7 @@ public class SharedPoolController {
 
 		DBTO dbTO = null;
 		try {
-			dbTO = dbService.getData(Constants.SHARED_POOL, DateUtil.getDateAsString(before),
+			dbTO = dbService.getData(Constants.SHARED_POOL_ID, DateUtil.getDateAsString(before),
 					DateUtil.getDateAsString(now));
 		} catch (InstantiationException e) {
 			e.printStackTrace();
@@ -67,7 +67,7 @@ public class SharedPoolController {
 
 		List<DBTO> dbTOList = null;
 		try {
-			dbTOList = dbService.getDataList(Constants.SHARED_POOL, startTime, endTime, x);
+			dbTOList = dbService.getDataList(Constants.SHARED_POOL_ID, startTime, endTime, x);
 		} catch (InstantiationException e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
@@ -96,7 +96,7 @@ public class SharedPoolController {
 
 		List<DBTO> dbTOList = null;
 		try {
-			dbTOList = dbService.getDataList(Constants.SHARED_POOL, startTime, endTime, y);
+			dbTOList = dbService.getDataList(Constants.SHARED_POOL_ID, startTime, endTime, y);
 		} catch (InstantiationException e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.nus.cs.domain.ThredTO;
 import com.nus.cs.service.DBService;
 
 /**
@@ -30,11 +31,15 @@ public class AfterLoginInController {
 	 * @throws InstantiationException 
 	 */
 	@RequestMapping(value = "/afterlogin", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException  {
+	public String home(Locale locale, Model model) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		
-		dbService.initThreshold();
-		dbService.getThreshold();
-		
+		ThredTO thredTO = null;
+		try {
+			 thredTO = dbService.getThreshold();
+		} catch (Exception e) {
+			dbService.initThreshold();
+		}
+
 		return "afterlogin";
 	}
 	

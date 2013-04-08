@@ -2,6 +2,7 @@ package com.nus.cs.domain;
 
 public class DBTO {
 	
+	private String table;
 	private String startTime;
 	private String endTime;
 	private double avgValue;
@@ -9,6 +10,13 @@ public class DBTO {
 	private String interval;
 	private String status;
 	
+
+	public String getTable() {
+		return table;
+	}
+	public void setTable(String table) {
+		this.table = table;
+	}
 	public String getStartTime() {
 		return startTime;
 	}

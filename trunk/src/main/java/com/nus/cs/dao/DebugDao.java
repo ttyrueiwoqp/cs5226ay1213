@@ -11,9 +11,9 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 import com.nus.cs.domain.DebugTO;
+import com.nus.cs.util.ConnectionUtil;
 
 public class DebugDao extends JdbcDaoSupport{
-	private DBDao dbDao = new DBDao();	
 	
 	public  void execute(String sql, DebugTO dbTO) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		boolean success = true;
@@ -21,7 +21,7 @@ public class DebugDao extends JdbcDaoSupport{
 		List<List<String>>table = new ArrayList<List<String>>();
 		
 		try {
-			Connection conn = dbDao.createConnection();
+			Connection conn = ConnectionUtil.createConnection();
 				
 			PreparedStatement ps = conn.prepareStatement(sql);
 			System.out.println(sql);

@@ -6,8 +6,10 @@ public class ThredTO {
 	private double sp2;
 	private double bc1;
 	private double bc2;
-	private double rl1;
-	private double rl2;
+	private double rlb1;
+	private double rlb2;
+	private double rlf1;
+	private double rlf2;
 	private double ma1;
 	private double ma2;
 	public double getSp1() {
@@ -34,17 +36,29 @@ public class ThredTO {
 	public void setBc2(double bc2) {
 		this.bc2 = bc2;
 	}
-	public double getRl1() {
-		return rl1;
+	public double getRlb1() {
+		return rlb1;
 	}
-	public void setRl1(double rl1) {
-		this.rl1 = rl1;
+	public void setRlb1(double rlb1) {
+		this.rlb1 = rlb1;
 	}
-	public double getRl2() {
-		return rl2;
+	public double getRlb2() {
+		return rlb2;
 	}
-	public void setRl2(double rl2) {
-		this.rl2 = rl2;
+	public void setRlb2(double rlb2) {
+		this.rlb2 = rlb2;
+	}
+	public double getRlf1() {
+		return rlf1;
+	}
+	public void setRlf1(double rlf1) {
+		this.rlf1 = rlf1;
+	}
+	public double getRlf2() {
+		return rlf2;
+	}
+	public void setRlf2(double rlf2) {
+		this.rlf2 = rlf2;
 	}
 	public double getMa1() {
 		return ma1;

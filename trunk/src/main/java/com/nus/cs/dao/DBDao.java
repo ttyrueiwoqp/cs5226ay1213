@@ -5,34 +5,18 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 import com.nus.cs.domain.DBTO;
+import com.nus.cs.domain.ThredTO;
+import com.nus.cs.util.Constants;
 
 public class DBDao extends JdbcDaoSupport {
 	
-	public Connection createConnection() throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
-		
-		String driverClass = "oracle.jdbc.driver.OracleDriver";
-		String connectionURL = "jdbc:oracle:thin:@dbtune.comp.nus.edu.sg:40953:a0040953";
-		String userID = "system";
-		String userPassword = "system";
-		Connection conn = null;
-
-		Properties conProps = new Properties();
-		conProps.put("user", userID);
-		conProps.put("password", userPassword);
-		conProps.put("defaultRowPrefetch", "15");
-
-		Class.forName(driverClass).newInstance();
-		conn = DriverManager.getConnection(connectionURL, conProps);
-		
-		return conn;		
-	}
-
 	public DBTO getData(Connection conn, String table, String startTime, String endTime) throws SQLException {
 
 		String sql = "SELECT metric_id, metric_name, avg(average) value "
@@ -46,11 +30,14 @@ public class DBDao extends JdbcDaoSupport {
 		ps.setString(2, startTime);
 		ps.setString(3, endTime);
 
+		System.out.println(startTime);
+		System.out.println(endTime);
 		ResultSet rs = ps.executeQuery();
 
 		DBTO dbTO = new DBTO();
 		if (rs.next()) {
 			dbTO.setAvgValue(rs.getDouble("value"));
+			dbTO.setTable(table);
 			dbTO.setStartTime(startTime);
 			dbTO.setEndTime(endTime);
 		}
@@ -70,31 +57,72 @@ public class DBDao extends JdbcDaoSupport {
 		ps = conn.prepareStatement(sql);
 		ps.execute();
 		
-		sql = " insert into THRESHOLD_CONFIG(PARAM_NAME, PARAM_WARNING, PARAM_CRITICAL) values ('Shared Pool',75,85) ";
+		sql = " insert into THRESHOLD_CONFIG(PARAM_NAME, PARAM_WARNING, PARAM_CRITICAL) values (?,75,85) ";
 		ps = conn.prepareStatement(sql);
+		ps.setString(1, Constants.SHARED_POOL);
 		ps.execute();
 		
-		sql = " insert into THRESHOLD_CONFIG(PARAM_NAME, PARAM_WARNING, PARAM_CRITICAL) values ('Buffer Cache',65,80) ";
+		sql = " insert into THRESHOLD_CONFIG(PARAM_NAME, PARAM_WARNING, PARAM_CRITICAL) values (?,65,80) ";
 		ps = conn.prepareStatement(sql);
+		ps.setString(1, Constants.BUFFER_CACHE);
 		ps.execute();
 		
-		sql = " insert into THRESHOLD_CONFIG(PARAM_NAME, PARAM_WARNING, PARAM_CRITICAL) values ('Redo Log Buffer',65,90) ";
+		sql = " insert into THRESHOLD_CONFIG(PARAM_NAME, PARAM_WARNING, PARAM_CRITICAL) values (?,65,90) ";
 		ps = conn.prepareStatement(sql);
+		ps.setString(1, Constants.REDO_LOG_BUFFER);
 		ps.execute();
 		
-		sql = " insert into THRESHOLD_CONFIG(PARAM_NAME, PARAM_WARNING, PARAM_CRITICAL) values ('Memory Area Used For Sorting',60,85) ";
+		sql = " insert into THRESHOLD_CONFIG(PARAM_NAME, PARAM_WARNING, PARAM_CRITICAL) values (?,1000,9000) ";
 		ps = conn.prepareStatement(sql);
+		ps.setString(1, Constants.REDO_LOG_FILES);
 		ps.execute();
 		
-		sql = " insert into THRESHOLD_CONFIG(PARAM_NAME, PARAM_WARNING, PARAM_CRITICAL) values ('Redo Log Files',1000,9000) ";
+		sql = " insert into THRESHOLD_CONFIG(PARAM_NAME, PARAM_WARNING, PARAM_CRITICAL) values (?,60,85) ";
 		ps = conn.prepareStatement(sql);
+		ps.setString(1, Constants.MEMORY_AREA);
 		ps.execute();
 		
 		ps.close();
 		
 	}
+	
+	public void updateThreshold(Connection conn, ThredTO thredTO) throws SQLException {
+		
+		String sql = " update threshold_config " +
+				" set param_warning = ?, param_critical=? " +
+				" where param_name = ? ";
+		
+		PreparedStatement ps = conn.prepareStatement(sql);
+		
+		ps.setDouble(1, thredTO.getSp1());
+		ps.setDouble(2, thredTO.getSp2());
+		ps.setString(3, Constants.SHARED_POOL);
+		ps.execute();
+		
+		ps.setDouble(1, thredTO.getBc1());
+		ps.setDouble(2, thredTO.getBc2());
+		ps.setString(3, Constants.BUFFER_CACHE);
+		ps.execute();
+		
+		ps.setDouble(1, thredTO.getRlb1());
+		ps.setDouble(2, thredTO.getRlb2());
+		ps.setString(3, Constants.REDO_LOG_BUFFER);
+		ps.execute();
+		
+		ps.setDouble(1, thredTO.getRlf1());
+		ps.setDouble(2, thredTO.getRlf2());
+		ps.setString(3, Constants.REDO_LOG_FILES);
+		ps.execute();
+		
+		ps.setDouble(1, thredTO.getMa1());
+		ps.setDouble(2, thredTO.getMa2());
+		ps.setString(3, Constants.MEMORY_AREA);
+		ps.execute();
+	}
 
-	public void getThreshold(Connection conn, Map<String, Integer> threshold) throws SQLException {
+	public Map<String, Integer> getThreshold(Connection conn) throws SQLException {
+		
+		Map<String, Integer> thredMap = new HashMap<String, Integer>();
 		
 		String sql = " SELECT param_name, param_warning, param_critical from threshold_config ";
 
@@ -103,13 +131,14 @@ public class DBDao extends JdbcDaoSupport {
 		ResultSet rs = ps.executeQuery();
 
 		while (rs.next()) {
-			threshold.put(rs.getString("PARAM_NAME") + " Warning",
+			thredMap.put(rs.getString("PARAM_NAME") + Constants.WARNING,
 					rs.getInt("param_warning"));
-			threshold.put(rs.getString("PARAM_NAME") + " Critical",
+			thredMap.put(rs.getString("PARAM_NAME") + Constants.CRITICAL,
 					rs.getInt("param_critical"));
 		}
 
 		ps.close();
 		
+		return thredMap;
 	}
 }
