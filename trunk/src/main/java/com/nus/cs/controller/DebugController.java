@@ -29,9 +29,12 @@ public class DebugController {
 	public String home(Locale locale, Model model) {
 
 		String error="This area will display error information from sql server.";
+		model.addAttribute("success", "false");
 		model.addAttribute("error", error);
 		List<List<String>> table = new ArrayList<List<String>>();
 		model.addAttribute("table", table);
+		List<String> header = new ArrayList<String>();
+		model.addAttribute("theader", header);
 		return "debug";
 	}
 
@@ -41,10 +44,14 @@ public class DebugController {
      
 		DebugTO dbTO = new DebugTO();
 		dbDao.execute(query, dbTO);
-		System.out.println(dbTO.getError());
-		String error = dbTO.getError();
-		model.addAttribute("error", error);
+		model.addAttribute("success", "true");
+		model.addAttribute("error", dbTO.getError());
 		model.addAttribute("table", dbTO.getTable());
+		model.addAttribute("theader",dbTO.getHeader());
+		
+		for(String s: dbTO.getHeader())
+			System.out.print(s+" ");
+		System.out.println();
          
         return "/debug";
     }
