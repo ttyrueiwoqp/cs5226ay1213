@@ -78,7 +78,7 @@
 									</h4></td>
 							</tr>
 							<tr align="center">
-								<td><h4>Average Value</h4></td>
+								<td><h4>Memory Sorts Ratio</h4></td>
 								<td><h4>
 										<fmt:formatNumber type="percent" minFractionDigits="2"
 											maxFractionDigits="2" value="${dbTO.avgValue/100}" />
@@ -95,7 +95,7 @@
 									</c:when>
 									<c:otherwise>
 										<td style="color: #DF0101">
-										<a href="advisor?attention=MemSort" style="color: #DF0101">
+										<a href="advisor?attention=MemoryArea" style="color: #DF0101">
 									</c:otherwise>
 								</c:choose>
 								<h4>

@@ -78,7 +78,7 @@
 									</h4></td>
 							</tr>
 							<tr align="center">
-								<td><h4>Average Value</h4></td>
+								<td><h4>Redo Allocation Hit Ratio</h4></td>
 								<td><h4>
 										<fmt:formatNumber type="percent" minFractionDigits="2"
 											maxFractionDigits="2" value="${dbTO.avgValue/100}" />

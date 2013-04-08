@@ -17,6 +17,9 @@ import com.nus.cs.util.Constants;
 
 public class DBDao extends JdbcDaoSupport {
 	
+	
+	
+	
 	public DBTO getData(Connection conn, String table, String startTime, String endTime) throws SQLException {
 
 		String sql = "SELECT metric_id, metric_name, avg(average) value "
@@ -45,6 +48,35 @@ public class DBDao extends JdbcDaoSupport {
 		return dbTO;
 	}
 
+	public DBTO getRedoLogFile(Connection conn, String startTime, String endTime) throws SQLException {
+
+		String sql = "SELECT avg(a.total_waits) value " +
+				"FROM dba_hist_system_event a, dba_hist_snapshot b " +
+				"WHERE b.snap_id = a.snap_id " +
+				"and a.event_name ='log file parallel write' " +
+				"and b.end_interval_time > to_date(?, 'dd/mm/yyyy HH24:MI:SS') " +
+				"and b.end_interval_time < to_date(?, 'dd/mm/yyyy HH24:MI:SS')";
+
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, startTime);
+		ps.setString(2, endTime);
+
+		ResultSet rs = ps.executeQuery();
+
+		DBTO dbTO = new DBTO();
+		if (rs.next()) {
+			dbTO.setAvgValue(rs.getDouble("value"));
+			dbTO.setTable(Constants.REDO_LOG_FILES_ID);
+			dbTO.setStartTime(startTime);
+			dbTO.setEndTime(endTime);
+		}
+		
+		ps.close();
+		
+		return dbTO;
+	}
+	
+	
 	public void initThreshold(Connection conn) throws SQLException {
 		
 		String sql = " DROP TABLE THRESHOLD_CONFIG ";

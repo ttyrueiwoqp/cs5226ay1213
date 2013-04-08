@@ -71,7 +71,7 @@
 									<th><font color="#F2F2F2">S/N</font></th>
 									<th><font color="#F2F2F2">Start Time</font></th>
 									<th><font color="#F2F2F2">End Time</font></th>
-									<th><font color="#F2F2F2">Average Value</font></th>
+									<th><font color="#F2F2F2">Memory Sorts Ratio</font></th>
 									<th><font color="#F2F2F2">Status</font></th>
 								</tr>
 								<%
@@ -117,7 +117,7 @@
 											</c:when>
 											<c:otherwise>
 												<td style="color: #DF0101">
-												<a href="advisor?attention=MemSort" style="color: #DF0101">
+												<a href="advisor?attention=MemoryArea" style="color: #DF0101">
 											</c:otherwise>
 										</c:choose>
 										<h5>

@@ -36,7 +36,7 @@ public class AdvisorController {
 			query = "select size_for_estimate, buffers_for_estimate, estd_physical_read_factor, estd_physical_reads from v$db_cache_advice";
 		
 		}
-		else if(metric.equalsIgnoreCase("MemSort")) {
+		else if(metric.equalsIgnoreCase("MemoryArea")) {
 			
 		}
 		else if(metric.equalsIgnoreCase("RedoLogBuffer")) {
