@@ -58,7 +58,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td valign="middle" style="padding: 30px; width: 100%;">
+						<td valign="middle" style="width: 100%;">
 							<div class="box_title">
 								<h3>
 									<span class="boxtitle"> <i>Second Level Details</i>
@@ -141,7 +141,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td valign="middle" style="padding: 30px; width: 100%;">
+						<td valign="middle" style="padding: 30px; width: 100%;  background-color:#E6E6E6;">
 							<div class="box_title">
 								<h4>
 									<span class="boxtitle"> <i>Low Level Details</i>
