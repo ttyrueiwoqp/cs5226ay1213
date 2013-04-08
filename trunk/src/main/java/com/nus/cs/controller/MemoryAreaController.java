@@ -29,7 +29,7 @@ public class MemoryAreaController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/ma", method = RequestMethod.GET)
-	public String sp(Locale locale, Model model) {
+	public String ma(Locale locale, Model model) {
 
 		Calendar cal = Calendar.getInstance();
 		Date now = new Date(cal.getTime().getTime());
@@ -55,7 +55,7 @@ public class MemoryAreaController {
 	}
 
 	@RequestMapping(value = "/ma2", method = RequestMethod.POST)
-	public String sp2(Model model,
+	public String ma2(Model model,
 			@ModelAttribute("startTime") String startTime,
 			@ModelAttribute("endTime") String endTime,
 			@ModelAttribute("x") String x) {
@@ -81,7 +81,7 @@ public class MemoryAreaController {
 	}
 
 	@RequestMapping(value = "/ma3", method = RequestMethod.POST)
-	public String sp3(Model model, 
+	public String ma3(Model model, 
 			@ModelAttribute("startend") String startend,
 			@ModelAttribute("y") String y) {
 

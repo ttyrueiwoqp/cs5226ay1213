@@ -71,7 +71,8 @@
 									<th><font color="#F2F2F2">S/N</font></th>
 									<th><font color="#F2F2F2">Start Time</font></th>
 									<th><font color="#F2F2F2">End Time</font></th>
-									<th><font color="#F2F2F2">Redo Log Files Total Waits</font></th>
+									<th><font color="#F2F2F2">Redo Log Files Total
+											Waits</font></th>
 									<th><font color="#F2F2F2">Status</font></th>
 								</tr>
 								<%
@@ -105,7 +106,8 @@
 												<c:out value="${dbTO.endTime}" />
 											</h5></td>
 										<td><h5>
-												<fmt:formatNumber type="number" value="${dbTO.avgValue}" />
+												<fmt:formatNumber type="number" minFractionDigits="3"
+													maxFractionDigits="3" value="${dbTO.avgValue}" />
 											</h5></td>
 										<c:choose>
 											<c:when test="${dbTO.status == HEALTHY}">
@@ -124,10 +126,10 @@
 											<c:out value="${dbTO.status}" />
 										</h5>
 										<c:choose>
-											<c:when test="${dbTO.status == 'HEALTHY'}">
+											<c:when test="${dbTO.status == HEALTHY}">
 
 											</c:when>
-											<c:when test="${dbTO.status == 'MODERATE'}">
+											<c:when test="${dbTO.status == MODERATE}">
 
 											</c:when>
 											<c:otherwise>

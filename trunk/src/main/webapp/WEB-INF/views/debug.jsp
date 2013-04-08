@@ -47,21 +47,21 @@
 	
 	<div align="center">
 		<table>
-			<tr><td width="800" height="50">
-				<div align="left"><h5>Debug Web Terminal:</h5></div>
+			<tr><td width="800" height="50" style="padding: 30px;">
+				<div align="left"><h4>Debug Web Terminal:</h4></div>
 				<form method="post" action="/cs/debug">
 					<textarea rows="10" cols="300" name="query" style="width: 100%; height: 100%">${query}</textarea> <br/>
 					<input type="submit" value="Execute"/>
 				</form>
 			</td></tr>
 			
-			<tr><td width="800" height="30">
-				<div align="left"><h5>Error Information:</h5></div>
+			<tr><td width="800" height="30" style="padding: 0px 30px 30px;">
+				<div align="left"><h4>Error Information:</h4></div>
 				<textarea readonly rows="3" cols="300" name="info" style="width: 100%; height: 100%">${error}</textarea>
 			</td></tr>
 			
-			<tr><td>
-				<div align="left"><h5>Results:</h5></div>
+			<tr><td style="padding: 0px 30px 30px;">
+				<div align="left"><h4>Results:</h4></div>
 				<div>
 					<c:choose>
 						<c:when test="${success == 'true'}">
