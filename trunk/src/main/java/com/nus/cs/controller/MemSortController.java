@@ -33,7 +33,7 @@ public class MemSortController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/ma", method = RequestMethod.GET)
+	@RequestMapping(value = "/ms", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome db! The client locale is {}.", locale);
 		
@@ -63,7 +63,7 @@ public class MemSortController {
 		return "MemSort";
 	}
 	
-	@RequestMapping(value = "/ma2", method = RequestMethod.GET)
+	@RequestMapping(value = "/ms2", method = RequestMethod.GET)
 	public String home2(Model model, @ModelAttribute("startTime")
     					String startTime, 
     					@ModelAttribute("endTime")
@@ -99,7 +99,7 @@ public class MemSortController {
 		return "MemSortSecond";
 	}
 	
-	@RequestMapping(value = "/ma3", method = RequestMethod.GET)
+	@RequestMapping(value = "/ms3", method = RequestMethod.GET)
 	public String home3(Model model, @ModelAttribute("startTime")
     					String startTime, 
     					@ModelAttribute("endTime")
