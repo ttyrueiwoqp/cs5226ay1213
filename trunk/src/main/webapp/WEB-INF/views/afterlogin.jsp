@@ -1,9 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="com.nus.cs.util.Constants"%>
 <%@ page session="false"%>
 <html>
 <head>
-<title>Homes</title>
+<title>Overall Database</title>
 <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css"
 	rel="stylesheet">
 <link
@@ -24,7 +25,7 @@
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="brand" href="/cs">CS5226</a>
+				<a class="brand" href="/cs">cs5226</a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
 						<li class="active"><a href="afterlogin">Overall Database</a></li>
@@ -42,9 +43,135 @@
 			</div>
 		</div>
 	</div>
-	<div class="container" align="left">
-		<h1>Welcome to DB Dashboard!</h1>
+	<c:set var="HEALTHY" value="<%=Constants.HEALTHY%>" />
+	<c:set var="MODERATE" value="<%=Constants.MODERATE%>" />
+	<!--  display area -->
+	<div class="container" align="center">
+		<table width="800" cellspacing="0" cellpadding="0" border="0"
+			align="center">
+			<tbody>
+				<tr>
+					<td align="center" valign="middle"
+						style="padding: 30px; width: 100%;">
+						<h1>Overall Database</h1>
+					</td>
+				</tr>
+				<tr>
+					<td valign="middle" style="padding: 30px; width: 100%;">
+						<div class="box_title">
+							<h3>
+								<span class="boxtitle"> <i>Overview</i>
+								</span>
+							</h3>
+						</div>
+						<table border="0" width="100%">
+							<tr align="center">
+								<td><h4>Start Time</h4></td>
+								<td><h4>
+										<c:out value="${spTO.startTime}" />
+									</h4></td>
+							</tr>
+							<tr align="center">
+								<td><h4>End Time</h4></td>
+								<td><h4>
+										<c:out value="${spTO.endTime}" />
+									</h4></td>
+							</tr>
+							<tr align="center">
+								<td><h4>Shared Pool</h4></td>
+								<c:choose>
+									<c:when test="${spTO.status == HEALTHY}">
+										<td style="color: #00FF00">
+									</c:when>
+									<c:when test="${spTO.status == MODERATE}">
+										<td style="color: #FFBF00">
+									</c:when>
+									<c:otherwise>
+										<td style="color: #DF0101">
+									</c:otherwise>
+								</c:choose>
+								<h4>
+									<c:out value="${spTO.status}" />
+								</h4>
+								</td>
+							</tr>
+							<tr align="center">
+								<td><h4>Buffer Cache</h4></td>
+								<c:choose>
+									<c:when test="${bcTO.status == HEALTHY}">
+										<td style="color: #00FF00">
+									</c:when>
+									<c:when test="${bcTO.status == MODERATE}">
+										<td style="color: #FFBF00">
+									</c:when>
+									<c:otherwise>
+										<td style="color: #DF0101">
+									</c:otherwise>
+								</c:choose>
+								<h4>
+									<c:out value="${bcTO.status}" />
+								</h4>
+								</td>
+							</tr>
+							<tr align="center">
+								<td><h4>Redo Log Buffer</h4></td>
+								<c:choose>
+									<c:when test="${rlbTO.status == HEALTHY}">
+										<td style="color: #00FF00">
+									</c:when>
+									<c:when test="${rlbTO.status == MODERATE}">
+										<td style="color: #FFBF00">
+									</c:when>
+									<c:otherwise>
+										<td style="color: #DF0101">
+									</c:otherwise>
+								</c:choose>
+								<h4>
+									<c:out value="${rlbTO.status}" />
+								</h4>
+								</td>
+							</tr>
+							<tr align="center">
+								<td><h4>Redo Log Files</h4></td>
+								<c:choose>
+									<c:when test="${rlfTO.status == HEALTHY}">
+										<td style="color: #00FF00">
+									</c:when>
+									<c:when test="${rlfTO.status == MODERATE}">
+										<td style="color: #FFBF00">
+									</c:when>
+									<c:otherwise>
+										<td style="color: #DF0101">
+									</c:otherwise>
+								</c:choose>
+								<h4>
+									<c:out value="${rlfTO.status}" />
+								</h4>
+								</td>
+							</tr>
+							<tr align="center">
+								<td><h4>Memory Area</h4></td>
+								<c:choose>
+									<c:when test="${maTO.status == HEALTHY}">
+										<td style="color: #00FF00">
+									</c:when>
+									<c:when test="${maTO.status == MODERATE}">
+										<td style="color: #FFBF00">
+									</c:when>
+									<c:otherwise>
+										<td style="color: #DF0101">
+									</c:otherwise>
+								</c:choose>
+								<h4>
+									<c:out value="${maTO.status}" />
+								</h4>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </body>
 </html>
-
