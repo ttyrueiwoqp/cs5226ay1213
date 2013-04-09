@@ -54,12 +54,15 @@
 		</tr>
 		<tr align="left">
 			<td>
-			<div> <h4>In init.ora, the parameter <a href="http://docs.oracle.com/cd/B19306_01/server.102/b14237/initparams197.htm">SHARED_POOL_SIZE</a> needs to be increased.</h4></div>
+			<div> 
+			<h4>The metric monitored for Shared Pool is <a href="http://docs.oracle.com/cd/B16240_01/doc/doc.102/e16282/oracle_database_help/oracle_database_sga_pool_wastage_shared_free_pct.html">"Shared Pool Free %"</a>.</h4>
+			<h4>In init.ora, the parameter <a href="http://docs.oracle.com/cd/B19306_01/server.102/b14237/initparams197.htm">SHARED_POOL_SIZE</a> needs to be increased, when you see <B>ATTENTION</B> alert.</h4>
+			</div>
 			</td>
 		</tr>
 		<tr align="left">
 			<td>
-			<div> <h4>See official Oracle documentation for <a href="http://docs.oracle.com/cd/B19306_01/server.102/b14211/memory.htm#i30970">shared pool memory management.</a></h4></div>
+			<div> <h4>See official Oracle documentation for <a href="http://docs.oracle.com/cd/B19306_01/server.102/b14211/memory.htm#i30970">shared pool memory management</a>.</h4></div>
 			</td>
 		</tr>
 		<tr align="left">
@@ -112,12 +115,15 @@
 		</tr>
 		<tr align="left">
 			<td>
-			<div> <h4>In init.ora, the parameter <a href="http://docs.oracle.com/cd/B12037_01/server.101/b10755/initparams200.htm">SORT_AREA_SIZE</a> needs to be increased.</h4></div>
+			<div>
+			<h4>The metric monitored for Memory Area Used For Sorting is <a href="http://docs.oracle.com/cd/B16240_01/doc/doc.102/e16282/oracle_database_help/oracle_database_instance_efficiency_inmem_sort_pct.html">Memory Sorts Ratio</a>.</h4> 
+			<h4>In init.ora, the parameter <a href="http://docs.oracle.com/cd/B12037_01/server.101/b10755/initparams200.htm">SORT_AREA_SIZE</a> needs to be increased, when you see <B>ATTENTION</B> alert.</h4>
+			</div>
 			</td>
 		</tr>
 		<tr align="left">
 			<td>
-			<div> <h4>See official Oracle documentation for <a href="http://docs.oracle.com/cd/B12037_01/server.101/b10752/memory.htm#49321">PGA memory management.</a></h4></div>
+			<div> <h4>See official Oracle documentation for <a href="http://docs.oracle.com/cd/B12037_01/server.101/b10752/memory.htm#49321">PGA memory management</a>.</h4></div>
 			</td>
 		</tr>
 		</table>
@@ -131,12 +137,35 @@
 		</tr>
 		<tr align="left">
 			<td>
-			<div> <h4>In init.ora, the parameter <a href="http://docs.oracle.com/cd/B19306_01/server.102/b14237/initparams108.htm">LOG_BUFFER</a> needs to be increased.</h4></div>
+			<div> 
+			<h4>The metric monitored for Redo Log Buffer is <a href="http://docs.oracle.com/cd/B16240_01/doc/doc.102/e16282/oracle_database_help/oracle_database_instance_efficiency_redologalloc_hit_pct.html">Redo Allocation Hit Ratio</a>.</h4>
+			<h4>In init.ora, the parameter <a href="http://docs.oracle.com/cd/B19306_01/server.102/b14237/initparams108.htm">LOG_BUFFER</a> needs to be increased, when you see <B>ATTENTION</B> alert.</h4>
+			</div>
 			</td>
 		</tr>
 		<tr align="left">
 			<td>
-			<div> <h4>See official Oracle documentation for <a href="http://docs.oracle.com/cd/B12037_01/server.101/b10752/memory.htm#38479"> reasonable estimation of log buffer size.</a></h4></div>
+			<div> <h4>See official Oracle documentation for <a href="http://docs.oracle.com/cd/B12037_01/server.101/b10752/memory.htm#38479"> reasonable estimation of log buffer size</a>.</h4></div>
+			</td>
+		</tr>
+		</table>
+		</c:when>
+		<c:when test="${metric == 'RedoLogFiles'}">
+		<table width="800">
+		<tr align="left">
+			<td>
+			<div> <h3><B>Redo Log Files</B></h3></div>
+			</td>
+		</tr>
+		<tr align="left">
+			<td>
+			<div>The value monitored is TOTAL_WAITS in <a href="http://docs.oracle.com/cd/B14117_01/server.101/b10755/statviews_2165.htm">DBA_HIS_SYSTEM_EVENT</a> for metric 'log file parallel write'.</h4>
+			<h4>You might wish to move database to a faster disk, when you see <B>ATTENTION</B> alert.</h4></div>
+			</td>
+		</tr>
+		<tr align="left">
+			<td>
+			<div> <h4>See official Oracle documentation for <a href="http://docs.oracle.com/cd/B19306_01/server.102/b14231/onlineredo.htm">managing the Redo Log</a>.</h4></div>
 			</td>
 		</tr>
 		</table>
@@ -150,7 +179,10 @@
 		</tr>
 		<tr align="left">
 			<td>
-			<div> <h4>In init.ora, the parameter <a href="http://docs.oracle.com/cd/B19306_01/server.102/b14237/initparams043.htm">DB_CACHE_SIZE</a> needs to be increased.</h4></div>
+			<div> 
+			<h4>The metric monitored for Buffer Cache is <a href="http://docs.oracle.com/cd/B16240_01/doc/doc.102/e16282/oracle_database_help/oracle_database_instance_efficiency_bufcachehit_pct.html">Buffer Cache Hit Ratio</a>.</h4>
+			<h4>In init.ora, the parameter <a href="http://docs.oracle.com/cd/B19306_01/server.102/b14237/initparams043.htm">DB_CACHE_SIZE</a> needs to be increased, when you see <B>ATTENTION</B> alert.</h4>
+			</div>
 			</td>
 		</tr>
 		<tr align="left">
