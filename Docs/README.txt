@@ -5,5 +5,5 @@
 5. Launch spring tool suite and import the project unzipped just now: File > Import > Maven > Existing Maven Project > browse and select the project folder > Finish
 6. Look for the file ConnectionUtil.java. Amend the database url by replacing the port and id. Change dbtune2 to dbtune if yours in dbtune.
 8. Drag and drop the project to the VMware vFabric tc Server at the bottom left, and run the server.
-9. Right click on the deployed project > Open home page. It will open the home page in the Spring Tool Suite.
+9. Right click on the deployed project > Open home page(http://localhost:8080/cs/). It will open the home page in the Spring Tool Suite.
 10. Now the websites are ready to use.
